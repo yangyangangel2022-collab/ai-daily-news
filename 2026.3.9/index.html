@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<title>AI每日情报 · 2026.03.09</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c14;
+    --surface1: #0e1520;
+    --surface2: #131c2e;
+    --surface3: #1a2540;
+    --border: rgba(255,255,255,0.07);
+    --text: #e8ecf8;
+    --text-muted: #7a8aaa;
+    --text-dim: #4a5878;
+    --purple: #a78bfa;
+    --blue: #60a5fa;
+    --deep-blue: #3b82f6;
+    --green: #22c55e;
+    --teal: #2dd4bf;
+    --sky: #38bdf8;
+    --yellow: #fbbf24;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .header {
+    text-align: center;
+    padding: 48px 20px 32px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(96,165,250,0.04) 0%, transparent 100%);
+  }
+  .header-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue);
+    border: 1px solid rgba(96,165,250,0.35);
+    border-radius: 24px;
+    padding: 4px 14px;
+    margin-bottom: 18px;
+  }
+  .header h1 { font-size: 3rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 12px; }
+  @keyframes gradientFlow {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .gradient-text {
+    background: linear-gradient(90deg, #667eea, #764ba2, #a78bfa, #60a5fa, #3b82f6, #667eea);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientFlow 8s ease infinite;
+  }
+  .header-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 15px;
+    color: #a5b4fc;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .header-meta span::before { content: '·'; margin-right: 20px; opacity: 0.4; }
+  .header-meta span:first-child::before { display: none; }
+  .container { max-width: 900px; margin: 0 auto; padding: 28px 20px 40px; }
+  .section {
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--surface1);
+  }
+  .section-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .section-toggle:hover { background: rgba(255,255,255,0.02); }
+  .section-header { display: flex; align-items: center; gap: 14px; }
+  .section-icon { font-size: 28px; }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.55;
+    margin-bottom: 2px;
+  }
+  .section-title { font-size: 22px; font-weight: 700; color: #fff; }
+  .section-right { display: flex; align-items: center; gap: 10px; }
+  .count-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2px 10px;
+  }
+  .chevron { color: var(--text-dim); font-size: 14px; transition: transform 0.3s; }
+  .section.open .chevron { transform: rotate(180deg); }
+  .section-body { padding: 0 22px 28px; display: none; }
+  .section.open .section-body { display: block; }
+
+  .s-meta    .section-label { color: #a78bfa; }
+  .s-meta    .section-toggle { border-top: 2px solid rgba(167,139,250,0.25); }
+  .s-industry .section-label { color: #60a5fa; }
+  .s-industry .section-toggle { border-top: 2px solid rgba(96,165,250,0.25); }
+  .s-invest  .section-label { color: #3b82f6; }
+  .s-invest  .section-toggle { border-top: 2px solid rgba(59,130,246,0.25); }
+  .s-tech    .section-label { color: #22c55e; }
+  .s-tech    .section-toggle { border-top: 2px solid rgba(34,197,94,0.25); }
+  .s-product .section-label { color: #2dd4bf; }
+  .s-product .section-toggle { border-top: 2px solid rgba(45,212,191,0.25); }
+  .s-edu     .section-label { color: #38bdf8; }
+  .s-edu     .section-toggle { border-top: 2px solid rgba(56,189,248,0.25); }
+
+  .news-item {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    padding-left: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-left: 4px solid;
+  }
+  .news-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .s-meta    .news-item { border-left-color: rgba(167,139,250,0.5); }
+  .s-industry .news-item { border-left-color: rgba(96,165,250,0.5); }
+  .s-invest  .news-item { border-left-color: rgba(59,130,246,0.5); }
+  .s-tech    .news-item { border-left-color: rgba(34,197,94,0.5); }
+  .s-product .news-item { border-left-color: rgba(45,212,191,0.5); }
+  .s-edu     .news-item { border-left-color: rgba(56,189,248,0.5); }
+
+  .news-header { display: flex; align-items: flex-start; gap: 10px; margin-top: 22px; margin-bottom: 8px; }
+  .score-badge {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    color: #fbbf24;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .news-title { font-size: 16px; font-weight: 600; line-height: 1.5; color: var(--text); }
+  .news-title a { color: inherit; text-decoration: none; }
+  .news-title a:hover { color: #fff; text-decoration: underline; }
+  .source-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+  }
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 14px;
+    width: 100%;
+    overflow: hidden;
+  }
+  .fact-col { padding: 0; min-width: 0; overflow: hidden; max-width: 100%; }
+  .fact-col h4 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+  .fact-col p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #d4d8e8;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    white-space: normal;
+  }
+  .s-meta    .fact-col h4 { color: #a78bfa; }
+  .s-industry .fact-col h4 { color: #60a5fa; }
+  .s-invest  .fact-col h4 { color: #3b82f6; }
+  .s-tech    .fact-col h4 { color: #22c55e; }
+  .s-product .fact-col h4 { color: #2dd4bf; }
+  .s-edu     .fact-col h4 { color: #38bdf8; }
+
+  .meta-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-top: 16px;
+  }
+  .meta-card h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #a78bfa;
+    margin-bottom: 10px;
+    opacity: 0.9;
+  }
+  .meta-card ul { list-style: none; padding: 0; }
+  .meta-card ul li {
+    font-size: 14px;
+    color: #c8d0e8;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    line-height: 1.6;
+  }
+  .meta-card ul li:last-child { border-bottom: none; }
+  .meta-card ul li::before { content: '→'; color: #a78bfa; margin-right: 8px; font-size: 12px; }
+  .meta-risk ul li::before { content: '⚠'; color: #fbbf24; }
+
+  .expand-btn {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-muted);
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    border-radius: 6px;
+    padding: 4px 10px;
+    cursor: pointer;
+    margin-right: 8px;
+    margin-top: 12px;
+    transition: all 0.2s;
+  }
+  .expand-btn:hover { border-color: rgba(255,255,255,0.25); color: #fff; }
+  .startup-card, .stock-card {
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    display: none;
+  }
+  .startup-card { border: 2px solid rgba(96,165,250,0.4); background: rgba(96,165,250,0.05); }
+  .stock-card   { border: 2px solid rgba(34,197,94,0.4);  background: rgba(34,197,94,0.05);  }
+  .startup-card.show, .stock-card.show { display: block; }
+
+  .stats-footer { max-width: 900px; margin: 0 auto; padding: 0 20px 60px; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .stat-card {
+    background: var(--surface1);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 16px 20px;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #a78bfa, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label { font-size: 13px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; }
+  .footer-credit { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-dim); letter-spacing: 0.5px; }
+
+  @media (max-width: 860px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .fact-grid  { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 680px) {
+    body            { font-size: 14px; }
+    .header         { padding: 32px 16px 22px; }
+    .header h1      { font-size: 2rem; }
+    .header-meta    { font-size: 12px; gap: 14px; }
+    .header-badge   { font-size: 9px; letter-spacing: 1px; }
+    .container      { padding: 16px 12px 20px; }
+    .stats-footer   { padding: 0 12px 40px; }
+    .stats-grid     { gap: 10px; }
+    .stat-card      { padding: 20px 10px 16px; border-radius: 10px; }
+    .stat-number    { font-size: 36px; }
+    .stat-label     { font-size: 12px; }
+    .section        { margin-bottom: 14px; border-radius: 10px; }
+    .section-body   { padding: 0 14px 20px; }
+    .section-toggle { padding: 14px 16px; }
+    .section-icon   { font-size: 22px; }
+    .section-title  { font-size: 18px; }
+    .section-label  { font-size: 10px; }
+    .news-item      { padding-left: 12px; margin-bottom: 28px; padding-bottom: 22px; }
+    .news-header    { gap: 8px; margin-top: 20px; margin-bottom: 10px; }
+    .news-title     { font-size: 15px; }
+    .score-badge    { font-size: 11px; padding: 2px 7px; }
+    .fact-grid      { grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+    .fact-col h4    { font-size: 11px; }
+    .fact-col p     { font-size: 13px; line-height: 1.7; word-wrap: break-word; word-break: break-word; overflow-wrap: anywhere; }
+    .meta-card      { padding: 14px; margin-top: 14px; }
+    .meta-card h4   { font-size: 11px; }
+    .meta-card ul li { font-size: 13px; }
+    .startup-card, .stock-card { font-size: 13px; padding: 12px; }
+    .expand-btn     { font-size: 11px; }
+    .count-pill     { font-size: 10px; padding: 1px 7px; }
+    .source-tag     { font-size: 10px; }
+    .footer-credit  { font-size: 12px; }
+  }
+  @media (max-width: 420px) {
+    .fact-grid   { grid-template-columns: 1fr; gap: 12px; }
+    .stats-grid  { grid-template-columns: repeat(2, 1fr); }
+    .stat-number { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-badge">LIVE · AI INTELLIGENCE DAILY</div>
+  <h1><span class="gradient-text">AI每日情报</span></h1>
+  <div class="header-meta">
+    <span>2026.03.09</span>
+    <span>实时抓取</span>
+    <span>12篇精选</span>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- 💡 元洞察 -->
+<div class="section s-meta open" id="sec-meta">
+  <div class="section-toggle" onclick="toggleSection('sec-meta')">
+    <div class="section-header">
+      <span class="section-icon">💡</span>
+      <div>
+        <div class="section-label">META_INSIGHT</div>
+        <div class="section-title">元洞察</div>
+      </div>
+    </div>
+    <div class="section-right">
+      <span class="count-pill">今日综合分析</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="section-body">
+    <div class="meta-card">
+      <h4>📡 今日趋势扫描</h4>
+      <ul>
+        <li><strong>Agent基础设施争夺战正式开打：</strong>OpenClaw 60天内积累26万GitHub星，超越React。腾讯/阿里/字节不约而同押注云端部署，本质是争夺Agent时代的"操作系统"入口，而非单纯产品热情。</li>
+        <li><strong>Anthropic的三线作战：</strong>同一周内，法律层（起诉DoD）、产品层（Marketplace上线）、市场层（App Store登顶）三线同时推进，战略密度罕见——创业公司转型基础设施公司的信号愈发明显。</li>
+        <li><strong>国防AI进入正规化融资轨道：</strong>SMACK $3200万、Ayar Labs $5亿均有明显国防属性。AI军事化不再是边缘叙事，已成主流投资逻辑之一。</li>
+        <li><strong>开源Agent vs 平台围墙：</strong>腾讯一边在总部门口免费装OpenClaw、开放QQ接入，一边封禁试图通过个人微信接入的第三方账号——平台与开源生态的博弈模式正在成型。</li>
+      </ul>
+    </div>
+    <div class="meta-card">
+      <h4>🔗 跨板块关联</h4>
+      <ul>
+        <li>OpenClaw爆火（🚀技术）→ 腾讯/阿里抢占云部署入口（✨产品）→ 国内AI云服务器需求暴增（💰投融资下一波标的）</li>
+        <li>Anthropic Marketplace上线（✨产品）→ 企业端采购决策转向"生态完整度"而非单一模型能力 → Claude登顶App Store（📡行业）形成消费端+企业端双重验证</li>
+        <li>DoD指定事件（📡行业）→ 美国国防AI供应链重组 → SMACK国防专用模型（💰投融资）逻辑正当化</li>
+      </ul>
+    </div>
+    <div class="meta-card">
+      <h4>🚀 创业方向建议</h4>
+      <ul>
+        <li><strong>短期（0-3个月）：</strong>OpenClaw Skills生态仍是蓝海，100+插件远不够用。面向中国企业的合规版Skills（钉钉+企微+飞书三端打通）有明确需求，腾讯云已提供部署基础设施。</li>
+        <li><strong>中期（3-12个月）：</strong>Claude Marketplace首批6家未覆盖的垂直行业（医疗、教育、政务）是进入窗口期。0抽佣政策意味着用户LTV完全归开发者，值得押注。</li>
+        <li><strong>长期（1年+）：</strong>AI Agent安全审计与合规工具。OpenClaw已触发2.1万个潜在安全漏洞节点，企业级安全解决方案严重不足。</li>
+      </ul>
+    </div>
+    <div class="meta-card meta-risk">
+      <h4>⚠️ 风险预警</h4>
+      <ul>
+        <li><strong>OpenClaw安全危机扩散风险：</strong>CVE-2026-25253（CVSS 8.8）已披露，2.1万个实例暴露在公网。攻击者可通过单一恶意链接劫持实例——当腾讯大规模推广后，这一数字将急剧扩大。</li>
+        <li><strong>Anthropic政策不确定性：</strong>DoD诉讼走向未定，若败诉将影响其政府合同资质；若胜诉则树立AI公司对抗政府指定的先例，行业合规成本可能上升。</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 📡 行业动态 -->
+<div class="section s-industry" id="sec-industry">
+  <div class="section-toggle" onclick="toggleSection('sec-industry')">
+    <div class="section-header">
+      <span class="section-icon">📡</span>
+      <div>
+        <div class="section-label">INDUSTRY</div>
+        <div class="section-title">行业动态</div>
+      </div>
+    </div>
+    <div class="section-right">
+      <span class="count-pill">3篇</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="section-body">
+
+    <div class="news-item">
+      <div class="news-header">
+        <div class="score-badge">9.2</div>
+        <div class="news-title"><a href="https://www.ithome.com/0/926/823.htm" target="_blank">Claude日新增注册超百万，反超ChatGPT登顶App Store</a></div>
+      </div>
+      <div class="source-tag">IT之家 · Anthropic官方 · 2026.03.05–06</div>
+      <div class="fact-grid">
+        <div class="fact-col"><h4>What</h4><p>Claude单日新增注册用户突破百万，在美国App Store免费榜超越ChatGPT登顶，同期出现"QuitGPT"社区运动，大量用户公开宣布从ChatGPT迁移至Claude。</p></div>
+        <div class="fact-col"><h4>How</h4><p>Anthropic通过Claude 3.7系列模型性能提升、Marketplace生态建设和价格策略形成拉力；ChatGPT用户不满情绪（广告植入、响应质量）形成推力。</p></div>
+        <div class="fact-col"><h4>Why</h4><p>消费级AI市场首次出现可量化的大规模用户迁移，证明AI产品忠诚度远低于社交产品。移动端入口争夺已从"拉新"进入"抢存量"阶段。</p></div>
+        <div class="fact-col"><h4>影响与行动</h4><p>Claude用户基数快速增长将反哺Marketplace开发者触达规模；API调用量同步上升，中间件/插件开发者的窗口期正在收窄，建议加快上线节奏。</p></div>
+      </div>
+      <button class="expand-btn" onclick="toggleCard(this, 'stock-ind1')">📈 股票联动</button>
+      <div class="stock-card" id="stock-ind1">
+        <strong>📈 股票联动</strong><br><br>
+        【A股强关联标的】科大讯飞(002230) 综合分3.2分🟡<br><br>
+        评分明细：<br>
+        • Logic(逻辑链): 3/5 - 国内AI应用竞争加剧，讯飞星火面临压力，但国内监管壁垒提供保护<br>
+        • Timing(时效): 3/5 - 市场对AI竞争格局已有预期<br>
+        • Certainty(确定性): 3/5 - 国内AI市场受政策保护，逻辑部分成立<br>
+        • Position(地位): 3/5 - 国内AI应用龙头，但非直接受益方<br>
+        • Linkage(关联度): 3/5 - 间接竞争关系<br><br>
+        投资逻辑：Claude在海外App Store登顶，短期内对国内市场直接影响有限，但加速了国内厂商对标国际水平的压力。科大讯飞作为国内AI应用标杆，受益于AI渗透率提升的长期逻辑仍在，但需关注星火模型能否跟上国际步伐。
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-header">
+        <div class="score-badge">9.0</div>
+        <div class="news-title"><a href="https://techcrunch.com" target="_blank">Anthropic正式向法院提起诉讼，挑战DoD"关键供应链"指定</a></div>
+      </div>
+      <div class="source-tag">Reuters · TechCrunch · 2026.03.07–09 (持续事件 03.05起)</div>
+      <div class="fact-grid">
+        <div class="fact-col"><h4>What</h4><p>Anthropic正式对美国国防部提起联邦诉讼，挑战DoD将其列为"关键国防技术供应链风险"的行政决定，要求法院撤销该指定并禁止相关限制措施生效。</p></div>
+        <div class="fact-col"><h4>How</h4><p>Anthropic援引行政程序法（APA），主张DoD在未充分告知、未给予抗辩机会的情况下作出指定，程序违法；同时援引其与政府合作记录证明指定缺乏事实依据。</p></div>
+        <div class="fact-col"><h4>Why</h4><p>若DoD指定成立，Anthropic将面临政府合同限制和盟友国采购障碍，实质影响其$380亿估值基本面。此案将成为AI公司能否通过司法途径对抗行政认定的标志性判例。</p></div>
+        <div class="fact-col"><h4>影响与行动</h4><p>Google、微软、AWS已发声明确认可继续商业合作，说明产业界对诉讼走向相对乐观。若Anthropic胜诉，将为AI公司对抗行政干预提供可复用的法律模板。</p></div>
+      </div>
+      <button class="expand-btn" onclick="toggleCard(this, 'startup-ind2')">💡 创业灵感</button>
+      <div class="startup-card" id="startup-ind2">
+        <strong>💡 创业灵感</strong><br><br>
+        做什么: AI合规风险评估SaaS——帮助AI创业公司提前识别政府采购/国防合规风险，生成合规报告和应对策略。<br>
+        切入点: 以Anthropic案例为样本，建立AI公司政府合规风险数据库，面向融资后期或计划政府合同的AI公司收费。<br>
+        为什么现在: DoD、FTC、NIST对AI的监管力度正在同步加大，合规需求真实存在，但专注AI合规的法律科技产品几乎空白。
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-header">
+        <div class="score-badge">8.8</div>
+        <div class="news-title"><a href="https://techcrunch.com" target="_blank">Google正式声明：无论DoD指定结果如何，将继续支持Anthropic全线商业合作</a></div>
+      </div>
+      <div class="source-tag">TechCrunch · Google官方声明 · 2026.03.09</div>
+      <div class="fact-grid">
+        <div class="fact-col"><h4>What</h4><p>Google DeepMind CEO Demis Hassabis公开表态，Google对Anthropic的投资和云合作不受DoD指定影响，微软、AWS随后发出类似声明，形成产业界集体背书。</p></div>
+        <div class="fact-col"><h4>How</h4><p>三大云厂商通过官方声明稳定市场预期，Google还暗示将在法律层面提供"朋友之诉"意见书支持Anthropic的司法挑战。</p></div>
+        <div class="fact-col"><h4>Why</h4><p>对Google而言，Anthropic是其与OpenAI竞争的关键棋子（持股约15%）；对微软和AWS，则是重要企业AI基础设施供应商。任何一方退出都将削弱自身AI生态竞争力。</p></div>
+        <div class="fact-col"><h4>影响与行动</h4><p>大厂集体声援表明AI产业链已形成互相依存的利益共同体，单一监管动作难以切断商业关系。投资者可将此视为Anthropic估值下行风险的对冲信号。</p></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 💰 投资融资 -->
+<div class="section s-invest" id="sec-invest">
+  <div class="section-toggle" onclick="toggleSection('sec-invest')">
+    <div class="section-header">
+      <span class="section-icon">💰</span>
+      <div>
+        <div class="section-label">INVESTMENT</div>
+        <div class="section-title">投资融资</div>
+      </div>
+    </div>
+    <div class="section-right">
+      <span class="count-pill">3篇</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="section-body">
+
+    <div class="news-item">
+      <div class="news-header">
+        <div class="score-badge">8.8</div>
+        <div class="news-title"><a href="https://techstartups.com/2026/03/03/top-startup-and-tech-funding-news-march-3-2025/" target="_blank">Ayar Labs完成$5亿Series E，NVIDIA/AMD联合领投，估值$38亿</a></div>
+      </div>
+      <div class="source-tag">TechStartups · 2026.03.03</div>
+      <div class="fact-grid">
+        <div class="fact-col"><h4>What</h4><p>MIT衍生公司Ayar Labs完成5亿美元E轮，由NVIDIA和AMD共同领投，卡塔尔投资局、联发科参投，估值达38亿美元。公司开发硅光子芯片，以光替代铜实现AI处理器间数据传输，可实现20倍每瓦吞吐量提升。</p></div>
+        <div class="fact-col"><h4>How</h4><p>NVIDIA/AMD同时投资同一竞争对手，体现战略布局而非单纯财务回报——双方均需要光互连技术解决各自数据中心的带宽瓶颈，市场足够大，无需独家锁定。</p></div>
+        <div class="fact-col"><h4>Why</h4><p>随着AI训练规模指数级扩张，数据在AI芯片间的移动成本已超过计算本身。光互连是下一代AI基础设施的关键使能技术，市场判断商业化时间窗口在2-3年内。</p></div>
+        <div class="fact-col"><h4>影响与行动</h4><p>AI基础设施投资逻辑正从"模型层"下沉至"物理层"。光子芯片、散热技术、电力基础设施将是未来12个月融资热点。关注A股光模块产业链：中际旭创、新易盛、天孚通信。</p></div>
+      </div>
+      <button class="expand-btn" onclick="toggleCard(this, 'stock-inv4')">📈 股票联动</button>
+      <div class="stock-card" id="stock-inv4">
+        <strong>📈 股票联动</strong><br><br>
+        【A股强关联标的】中际旭创(300308) 综合分4.2分🔴<br><br>
+        评分明细：<br>
+        • Logic(逻辑链): 5/5 - 光模块/光互连是AI数据中心核心需求，Ayar Labs的融资直接验证市场方向<br>
+        • Timing(时效): 4/5 - 市场对光模块逻辑已有认知，但Ayar的硅光子路线尚未充分定价<br>
+        • Certainty(确定性): 4/5 - AI算力需求确定性强，光互连替代铜连接趋势明确<br>
+        • Position(地位): 4/5 - 中际旭创是国内光模块龙头，直接受益于数据中心升级<br>
+        • Linkage(关联度): 4/5 - 产业链高度相关，硅光子商业化将带动整体光模块市场扩容<br><br>
+        投资逻辑：Ayar Labs获NVIDIA/AMD双重背书，说明光互连技术已从概念进入量产前夕。中际旭创作为国内最大光模块制造商，将受益于800G/1.6T光模块需求爆发。近期DeepSeek带来的推理侧算力需求放量进一步支撑光模块订单可见度。建议关注季报数据中海外大客户订单变化。
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-header">
+        <div class="score-badge">8.2</div>
+        <div class="news-title"><a href="https://techstartups.com/2026/03/03/top-startup-and-tech-funding-news-march-3-2025/" target="_blank">Grow Therapy完成$1.5亿Series D，AI心理健康平台覆盖1.25亿参保人</a></div>
+      </div>
+      <div class="source-tag">TechStartups · 2026.03.03</div>
+      <div class="fact-grid">
+        <div class="fact-col"><h4>What</h4><p>AI驱动心理健康平台Grow Therapy完成1.5亿美元D轮，TCV和高盛联合领投，累计融资3.28亿美元。平台将AI工具与人工治疗师结合，已对接125家保险公司、覆盖2.2亿参保人。</p></div>
+        <div class="fact-col"><h4>How</h4><p>Grow的AI工具将治疗师病历记录时间缩短70%，并提供会话间隔期的AI陪伴支持。通过保险报销而非直接付费的商业模式，有效突破心理健康服务的支付壁垒。</p></div>
+        <div class="fact-col"><h4>Why</h4><p>美国心理健康供给严重不足（等待时间平均3-6个月），AI辅助模型可将治疗师服务容量提升数倍。此次融资体现机构投资者对"AI+人工"混合模式的强烈偏好。</p></div>
+        <div class="fact-col"><h4>影响与行动</h4><p>中国心理健康AI赛道存在类似机会：公立医疗资源不足+保险覆盖不完善。差异在于需通过医疗器械审批。建议关注国内心理健康SaaS和AI辅助诊断公司下一轮融资动向。</p></div>
+      </div>
+      <button class="expand-btn" onclick="toggleCard(this, 'startup-inv5')">💡 创业灵感</button>
+      <div class="startup-card" id="startup-inv5">
+        <strong>💡 创业灵感</strong><br><br>
+        做什么: 企业员工心理健康AI助手——面向中大型企业的EAP（员工援助计划）AI升级方案，将AI情绪识别+人工咨询结合，以SaaS形式收费。<br>
+        切入点: 从上市公司ESG报告要求切入，帮助HR满足"员工心理健康关怀"披露指标，降低销售阻力。<br>
+        为什么现在: 2025年A股ESG披露新规落地，企业对员工心理健康支出有真实预算，但系统化解决方案仍以人工为主。
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-header">
+        <div class="score-badge">8.3</div>
+        <div class="news-title"><a href="https://venturebeat.com" target="_blank">SMACK Technologies完成$3200万融资：前海军陆战队创立的国防专用大模型</a></div>
+      </div>
+      <div class="source-tag">VentureBeat · 2026.03.02</div>
+      <div class="fact-grid">
+        <div class="fact-col"><h4>What</h4><p>由前美国海军陆战队军官创立的SMACK Technologies完成3200万美元融资，旗下Omega和Alpha两款模型专为国防作战场景设计，支持离线部署和战术边缘计算。</p></div>
+        <div class="fact-col"><h4>How</h4><p>SMACK的核心差异化在于"Air-Gap"设计——模型可在完全断网的战术环境中运行，避免敏感数据外传，直接解决了通用大模型用于国防的最大合规障碍。</p></div>
+        <div class="fact-col"><h4>Why</h4><p>恰逢Anthropic被DoD列为供应链风险的舆论背景下，专为国防设计的大模型赛道需求逻辑显著增强。美国国防部正加快AI采购但面临供应商安全资质筛选难题。</p></div>
+        <div class="fact-col"><h4>影响与行动</h4><p>国防AI是未来3年最确定性的政府支出增量之一。创业者可考虑"民用模型+国防合规层"的产品设计，先获认证再拓展业务，降低从零开始的难度。</p></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 🚀 技术突破 -->
+<div class="section s-tech" id="sec-tech">
+  <div class="section-toggle" onclick="toggleSection('sec-tech')">
+    <div class="section-header">
+      <span class="section-icon">🚀</span>
+      <div>
+        <div class="section-label">BREAKTHROUGH</div>
+        <div class="section-title">技术突破</div>
+      </div>
+    </div>
+    <div class="section-right">
+      <span class="count-pill">1篇</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="section-body">
+
+    <div class="news-item">
+      <div class="news-header">
+        <div class="score-badge">9.5</div>
+        <div class="news-title"><a href="https://github.com/openclaw/openclaw" target="_blank">OpenClaw（"小龙虾"）：60天超越React，26万GitHub星，黄仁勋称"时代最重要软件发布"</a></div>
+      </div>
+      <div class="source-tag">Wikipedia · CNBC · GitHub · IT之家 · 钛媒体 · 2026.01–03.09</div>
+      <div class="fact-grid">
+        <div class="fact-col"><h4>What</h4><p>奥地利开发者Peter Steinberger于2025年11月发布的开源AI Agent平台，原名Clawdbot，2月改名OpenClaw。可通过WhatsApp/Telegram/QQ/飞书/钉钉等IM控制，7×24小时自主执行任务，基于Anthropic MCP协议构建，60天GitHub星数达26万，超越React。2月14日创始人加入OpenAI，项目移交开源基金会。</p></div>
+        <div class="fact-col"><h4>How</h4><p>国内：腾讯云3月6日摆摊免费安装，QQ 3月7日开放官方接入（单账号最多5个机器人）；阿里云、字节火山引擎同步支持。企业微信已可接入，个人微信仅有第三方灰色插件，腾讯已封禁部分账号——左手推广右手封堵，用IM生态圈住流量。</p></div>
+        <div class="fact-col"><h4>Why</h4><p>OpenClaw代表AI从"对话工具"跨越至"自主执行系统"的质变时刻。爆火底层逻辑：开源免费+自托管+IM作为交互入口，极大降低部署门槛。腾讯封堵个人微信，核心是微信生态控制权是其最大护城河，不容第三方在个人微信建立用户关系。</p></div>
+        <div class="fact-col"><h4>影响与行动</h4><p>⚠️ 安全警告：CVE-2026-25253（CVSS 8.8）已公开，单一恶意链接可劫持实例，2.1万个节点暴露在公网，企业使用务必隔离部署。创业机会：企业场景Skills插件、安全合规层、一键部署SaaS。</p></div>
+      </div>
+      <button class="expand-btn" onclick="toggleCard(this, 'startup-tech7')">💡 创业灵感</button>
+      <button class="expand-btn" onclick="toggleCard(this, 'stock-tech7')">📈 股票联动</button>
+      <div class="startup-card" id="startup-tech7">
+        <strong>💡 创业灵感</strong><br><br>
+        做什么: 面向中小企业的OpenClaw托管SaaS——提供安全隔离的企业级部署环境，预装企微/钉钉/飞书三端适配，内置合规审计日志。<br>
+        切入点: 对标腾讯云的免费部署活动，提供更省事的付费版：安全沙箱+权限管理+一键接入企业IM+7×24监控，月付499-2999元。<br>
+        为什么现在: 腾讯的免费活动证明需求真实存在，但个人部署的安全风险和配置复杂度创造了明显的付费意愿空间。
+      </div>
+      <div class="stock-card" id="stock-tech7">
+        <strong>📈 股票联动</strong><br><br>
+        【A股强关联标的】阿里巴巴-W(09988.HK) / 腾讯控股(00700.HK) 综合分4.0分🔴<br><br>
+        评分明细：<br>
+        • Logic(逻辑链): 5/5 - OpenClaw每次任务消耗数十万Token，阿里云/腾讯云直接受益于推理侧算力需求<br>
+        • Timing(时效): 4/5 - 腾讯摆摊事件本周刚发生，市场反应尚未完全定价<br>
+        • Certainty(确定性): 3/5 - 取决于OpenClaw用户增长速度及安全问题解决进度<br>
+        • Position(地位): 4/5 - 阿里云/腾讯云是国内OpenClaw主要部署平台<br>
+        • Linkage(关联度): 4/5 - 云服务商与Agent生态直接绑定<br><br>
+        投资逻辑：OpenClaw的Agent逻辑天然是"Token印钞机"，单次任务消耗量远超普通对话。三家云厂商（阿里/腾讯/字节）将直接受益于OpenClaw用户规模扩张带来的推理侧算力消耗爆发。近期国内大厂争相提供免费部署服务，本质是在抢占算力消耗的长期流量。
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ✨ 产品上线 -->
+<div class="section s-product" id="sec-product">
+  <div class="section-toggle" onclick="toggleSection('sec-product')">
+    <div class="section-header">
+      <span class="section-icon">✨</span>
+      <div>
+        <div class="section-label">PRODUCT</div>
+        <div class="section-title">产品上线</div>
+      </div>
+    </div>
+    <div class="section-right">
+      <span class="count-pill">2篇</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="section-body">
+
+    <div class="news-item">
+      <div class="news-header">
+        <div class="score-badge">9.3</div>
+        <div class="news-title"><a href="https://venturebeat.com" target="_blank">Anthropic Claude Marketplace正式上线：首批6家合作伙伴，0抽佣政策</a></div>
+      </div>
+      <div class="source-tag">VentureBeat · Anthropic官方 · 2026.03.06–07</div>
+      <div class="fact-grid">
+        <div class="fact-col"><h4>What</h4><p>Anthropic推出Claude Marketplace，首批入驻Snowflake、GitLab、Harvey、Replit、Rogo、Lovable六家合作伙伴，覆盖数据库、开发工具、法律、编程、金融、低代码六大企业软件核心场景，对开发者不收取任何分成。</p></div>
+        <div class="fact-col"><h4>How</h4><p>平台允许第三方开发者基于Claude API构建专业应用并直接面向Claude用户分发。0抽佣与Apple App Store（30%）、Google Play（15-30%）形成鲜明对比，意在快速集聚开发者生态。</p></div>
+        <div class="fact-col"><h4>Why</h4><p>Anthropic战略意图清晰：以Claude用户基数（App Store登顶）+0抽佣政策吸引开发者，形成平台飞轮。配合当天Claude App Store登顶，消费端+企业端双重验证同步完成。</p></div>
+        <div class="fact-col"><h4>影响与行动</h4><p>这是2026年最值得关注的B2B开发者机会之一。现有6家合作伙伴未覆盖的高价值垂直行业（医疗、教育、政务、制造）是进入窗口。0抽佣且用户基数快速增长，建议现在就申请接入资格。</p></div>
+      </div>
+      <button class="expand-btn" onclick="toggleCard(this, 'startup-prod8')">💡 创业灵感</button>
+      <div class="startup-card" id="startup-prod8">
+        <strong>💡 创业灵感</strong><br><br>
+        做什么: 基于Claude Marketplace的医疗AI助手——面向私立医院和诊所的智能病历生成+患者沟通工具。<br>
+        切入点: 先在东南亚/中东市场上线Claude Marketplace，积累用户数据后以API形式回国内落地。<br>
+        为什么现在: 首批6家合作伙伴均为技术类产品，医疗场景几乎空白；0抽佣意味着早期现金流全归自己；Claude多语言能力特别适合东南亚市场。
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-header">
+        <div class="score-badge">9.0</div>
+        <div class="news-title"><a href="https://www.ithome.com/0/926/823.htm" target="_blank">腾讯QQ开放OpenClaw官方接入，国内大厂争相布局Agent部署入口</a></div>
+      </div>
+      <div class="source-tag">IT之家 · 新浪财经 · 钛媒体 · 2026.03.06–07</div>
+      <div class="fact-grid">
+        <div class="fact-col"><h4>What</h4><p>腾讯云3月6日深圳总部摆摊免费安装OpenClaw，3月7日QQ开放官方接入（1分钟内完成绑定，单账号最多5个机器人）。阿里云、字节火山引擎同步跟进。企业微信已可接入，个人微信无官方通道，腾讯已封禁部分第三方接入账号。</p></div>
+        <div class="fact-col"><h4>How</h4><p>腾讯战略逻辑：用自家IM生态（QQ/企微）圈住OpenClaw流量，同时通过腾讯云Lighthouse提供部署基础设施——从用户界面到算力基础一并收割。国内大厂积极拥抱的核心原因：OpenClaw是Token消耗大户，直接拉动推理侧算力收入。</p></div>
+        <div class="fact-col"><h4>Why</h4><p>OpenClaw基于Anthropic MCP协议，技能层可跨平台复用，让每个IM平台都有理由成为入口。个人微信被封堵，是因为微信生态控制权是腾讯最大护城河，不允许第三方工具在个人微信中建立用户关系。</p></div>
+        <div class="fact-col"><h4>影响与行动</h4><p>开发者短期内应优先适配企业微信+钉钉+飞书，这是腾讯/阿里/字节愿意主动导流的渠道。避免依赖个人微信接入，封号风险高。长期关注腾讯是否推出官方"微信版Claw"——那将是消费端Agent最大的爆发点。</p></div>
+      </div>
+      <button class="expand-btn" onclick="toggleCard(this, 'startup-prod9')">💡 创业灵感</button>
+      <button class="expand-btn" onclick="toggleCard(this, 'stock-prod9')">📈 股票联动</button>
+      <div class="startup-card" id="startup-prod9">
+        <strong>💡 创业灵感</strong><br><br>
+        做什么: OpenClaw企业级Skills商店——类似WordPress插件市场，专注企业场景（ERP对接、CRM自动化、财务报表生成），提供免费基础版+企业付费支持。<br>
+        切入点: 从腾讯云/阿里云官方文档的未覆盖场景入手，成为官方推荐的垂直行业技能提供商。<br>
+        为什么现在: ClawHub社区技能库只有100+，企业场景几乎空白；腾讯/阿里主动导流意味着冷启动成本极低。
+      </div>
+      <div class="stock-card" id="stock-prod9">
+        <strong>📈 股票联动</strong><br><br>
+        【A股强关联标的】用友网络(600588) 综合分3.5分🟡<br><br>
+        评分明细：<br>
+        • Logic(逻辑链): 4/5 - OpenClaw接入企业IM后，ERP/OA系统对接是天然需求，用友企业软件生态有接入价值<br>
+        • Timing(时效): 3/5 - 企业端OpenClaw渗透需要时间，短期影响有限<br>
+        • Certainty(确定性): 3/5 - 取决于企业OpenClaw采用速度<br>
+        • Position(地位): 4/5 - 用友是国内ERP龙头，是OpenClaw接入的天然候选者<br>
+        • Linkage(关联度): 3/5 - 间接受益，需要主动布局OpenClaw生态<br><br>
+        投资逻辑：企业微信+OpenClaw的组合将创造大量"AI对接ERP/OA"需求，用友等传统企业软件厂商面临"被集成"或"主动集成"的二选一时刻。若用友率先官宣OpenClaw集成方案，将成为明显催化剂。
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 🎓 教育资讯 -->
+<div class="section s-edu" id="sec-edu">
+  <div class="section-toggle" onclick="toggleSection('sec-edu')">
+    <div class="section-header">
+      <span class="section-icon">🎓</span>
+      <div>
+        <div class="section-label">EDUCATION</div>
+        <div class="section-title">教育资讯</div>
+      </div>
+    </div>
+    <div class="section-right">
+      <span class="count-pill">3篇</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="section-body">
+
+    <div class="news-item">
+      <div class="news-header">
+        <div class="score-badge">8.3</div>
+        <div class="news-title"><a href="https://www.insidehighered.com" target="_blank">圣何塞市与圣何塞州立大学联合开设全美首个公众免费AI技能中心</a></div>
+      </div>
+      <div class="source-tag">Inside Higher Ed · 2026.03.04</div>
+      <div class="fact-grid">
+        <div class="fact-col"><h4>What</h4><p>加利福尼亚州圣何塞市政府与圣何塞州立大学宣布合作，在市中心开设对所有公众免费开放的AI技能培训中心，提供从AI基础认知到编程实操的分级课程体系。</p></div>
+        <div class="fact-col"><h4>How</h4><p>中心采用"政府出地+大学出师资+科技公司出设备"三方合作模式，课程从每周一次的入门工作坊到12周沉浸式训练营分层设计，面向失业工人、在职转岗人员和在校学生。</p></div>
+        <div class="fact-col"><h4>Why</h4><p>硅谷核心城市主动布局AI再教育基础设施，反映政府对AI导致结构性失业的现实焦虑。该模式若有效，将成为其他城市参考模板，也意味着AI职业教育的公共采购市场即将形成。</p></div>
+        <div class="fact-col"><h4>影响与行动</h4><p>政府主导的AI职业教育正在成型，内容供应商（课程、认证、实训平台）将面临大规模采购机会。关注政府AI教育标准制定动向，提前布局认证体系合作。</p></div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-header">
+        <div class="score-badge">8.2</div>
+        <div class="news-title"><a href="https://www.insidehighered.com" target="_blank">明尼苏达大学启动全校AI Hub，设立全美首批"首席AI副教务长"职位</a></div>
+      </div>
+      <div class="source-tag">Inside Higher Ed · 2026.03.04</div>
+      <div class="fact-grid">
+        <div class="fact-col"><h4>What</h4><p>明尼苏达大学宣布设立校级AI Hub，并创建"首席AI副教务长"（Associate Provost for AI）新职位，负责统筹全校AI战略、政策制定和跨学院AI研究协调，成为全美首批在行政层面正式建立AI治理架构的旗舰研究型大学。</p></div>
+        <div class="fact-col"><h4>How</h4><p>AI Hub将整合计算机科学、医学、法学、商学等学院AI研究力量，建立统一的计算资源调配机制和伦理审查框架，同时推动AI技能纳入全校通识必修课。</p></div>
+        <div class="fact-col"><h4>Why</h4><p>研究型大学设立专门AI治理职位，意味着AI已从"各院系自选动作"升级为"校级战略基础设施"。这预示高校AI相关预算（软件、咨询、培训）将在未来2年大幅增加。</p></div>
+        <div class="fact-col"><h4>影响与行动</h4><p>高校AI治理和基础设施建设是被严重低估的企业级市场。面向大学的AI合规管理平台、AI使用行为分析工具、面向教职工的AI培训认证，都将迎来确定性采购机会。</p></div>
+      </div>
+      <button class="expand-btn" onclick="toggleCard(this, 'startup-edu11')">💡 创业灵感</button>
+      <div class="startup-card" id="startup-edu11">
+        <strong>💡 创业灵感</strong><br><br>
+        做什么: 高校AI使用合规管理平台——帮助大学监测管理学生AI使用行为，提供学术诚信AI检测+教职工AI工具使用数据分析+学校AI政策合规报告。<br>
+        切入点: 以明尼苏达等设立AI副教务长的大学为首批目标客户，提供AI治理咨询+SaaS工具组合方案。<br>
+        为什么现在: 设立"首席AI副教务长"意味着有预算和决策人，是最理想的销售切入点；国内高校也面临同样困境但尚无成熟产品。
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-header">
+        <div class="score-badge">8.1</div>
+        <div class="news-title"><a href="https://www.npr.org" target="_blank">NPR深度报道：85%大学生在用AI，教授中仅40%，代际鸿沟正在重塑课堂</a></div>
+      </div>
+      <div class="source-tag">NPR Education · 2026.03.03</div>
+      <div class="fact-grid">
+        <div class="fact-col"><h4>What</h4><p>NPR联合多所大学发布调研：85%本科生在学业中使用AI工具，但仅40%教授在课程中主动整合AI。使用AI学生的GPA普遍高于不使用者0.3-0.5分，但教授对"AI辅助作业"的判定标准差异极大。</p></div>
+        <div class="fact-col"><h4>How</h4><p>学生AI使用主要集中在写作润色（78%）、概念解释（65%）、代码调试（52%）。教授抵制主要来自"无法评估真实学习成果"的焦虑。部分院校已开始要求"AI使用声明"替代传统诚信承诺。</p></div>
+        <div class="fact-col"><h4>Why</h4><p>代际AI使用鸿沟折射更深层问题：现行大学课程体系是否还能评估"人类原创能力"，以及"AI辅助"与"AI替代"的教育边界在哪里。这个问题未来5年内不会有标准答案。</p></div>
+        <div class="fact-col"><h4>影响与行动</h4><p>教授AI使用率低（40%）意味着教职工AI培训市场有极大空间。面向高校教师的AI教学法工作坊、AI融入课程设计工具，都是当前被低估的产品方向，决策周期短、采购金额适中。</p></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="stats-footer">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">12</div>
+      <div class="stat-label">精选篇数</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">50+</div>
+      <div class="stat-label">信源数量</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">6</div>
+      <div class="stat-label">核心板块</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">6</div>
+      <div class="stat-label">股票标的</div>
+    </div>
+  </div>
+  <div class="footer-credit">Generated by AI洋同学实验室 · AI Daily Intelligence</div>
+</div>
+
+<script>
+function toggleSection(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+function toggleCard(btn, cardId) {
+  const card = document.getElementById(cardId);
+  if (card.classList.contains('show')) {
+    card.classList.remove('show');
+    btn.style.color = '';
+  } else {
+    card.classList.add('show');
+    btn.style.color = '#fff';
+  }
+}
+</script>
+</body>
+</html>
