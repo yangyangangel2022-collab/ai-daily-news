@@ -8,14 +8,15 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #080c14;
-    --surface1: #0e1520;
-    --surface2: #131c2e;
+    --bg: #0b0d14;
+    --surface: #111420;
+    --surface1: #111420;
+    --surface2: #161924;
     --surface3: #1a2540;
     --border: rgba(255,255,255,0.07);
-    --text: #e8ecf8;
-    --text-muted: #7a8aaa;
-    --text-dim: #4a5878;
+    --text: #e8ecf4;
+    --text-muted: #6b7494;
+    --text-dim: #6b7494;
     --purple: #a78bfa;
     --blue: #60a5fa;
     --deep-blue: #3b82f6;
@@ -122,18 +123,7 @@
   .section-body { padding: 0 22px 28px; display: none; }
   .section.open .section-body { display: block; }
 
-  .s-meta    .section-label { color: #a78bfa; }
-  .s-meta    .section-toggle { border-top: 2px solid rgba(167,139,250,0.25); }
-  .s-industry .section-label { color: #60a5fa; }
-  .s-industry .section-toggle { border-top: 2px solid rgba(96,165,250,0.25); }
-  .s-invest  .section-label { color: #3b82f6; }
-  .s-invest  .section-toggle { border-top: 2px solid rgba(59,130,246,0.25); }
-  .s-tech    .section-label { color: #22c55e; }
-  .s-tech    .section-toggle { border-top: 2px solid rgba(34,197,94,0.25); }
-  .s-product .section-label { color: #2dd4bf; }
-  .s-product .section-toggle { border-top: 2px solid rgba(45,212,191,0.25); }
-  .s-edu     .section-label { color: #38bdf8; }
-  .s-edu     .section-toggle { border-top: 2px solid rgba(56,189,248,0.25); }
+  /* section-label颜色通过HTML style属性定义，与昨日一致 */
 
   .news-item {
     margin-bottom: 32px;
@@ -143,12 +133,7 @@
     border-left: 4px solid;
   }
   .news-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  .s-meta    .news-item { border-left-color: rgba(167,139,250,0.5); }
-  .s-industry .news-item { border-left-color: rgba(96,165,250,0.5); }
-  .s-invest  .news-item { border-left-color: rgba(59,130,246,0.5); }
-  .s-tech    .news-item { border-left-color: rgba(34,197,94,0.5); }
-  .s-product .news-item { border-left-color: rgba(45,212,191,0.5); }
-  .s-edu     .news-item { border-left-color: rgba(56,189,248,0.5); }
+  /* news-item border-left-color通过HTML style属性定义实色，与昨日一致 */
 
   .news-header { display: flex; align-items: flex-start; gap: 10px; margin-top: 22px; margin-bottom: 8px; }
   .score-badge {
@@ -201,19 +186,14 @@
     -webkit-hyphens: auto;
     white-space: normal;
   }
-  .s-meta    .fact-col h4 { color: #a78bfa; }
-  .s-industry .fact-col h4 { color: #60a5fa; }
-  .s-invest  .fact-col h4 { color: #3b82f6; }
-  .s-tech    .fact-col h4 { color: #22c55e; }
-  .s-product .fact-col h4 { color: #2dd4bf; }
-  .s-edu     .fact-col h4 { color: #38bdf8; }
+  /* fact-col h4颜色通过HTML style属性定义，与昨日一致 */
 
   .meta-card {
     background: var(--surface2);
-    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 16px 18px;
     margin-top: 16px;
+    border-left: 3px solid var(--purple);
   }
   .meta-card h4 {
     font-family: 'JetBrains Mono', monospace;
@@ -221,21 +201,17 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #a78bfa;
+    color: var(--purple);
     margin-bottom: 10px;
     opacity: 0.9;
   }
-  .meta-card ul { list-style: none; padding: 0; }
+  .meta-card ul { padding-left: 18px; }
   .meta-card ul li {
     font-size: 14px;
-    color: #c8d0e8;
-    padding: 5px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    line-height: 1.6;
+    line-height: 1.8;
+    color: #c8cde0;
+    margin-bottom: 4px;
   }
-  .meta-card ul li:last-child { border-bottom: none; }
-  .meta-card ul li::before { content: '→'; color: #a78bfa; margin-right: 8px; font-size: 12px; }
-  .meta-risk ul li::before { content: '⚠'; color: #fbbf24; }
 
   .expand-btn {
     background: none;
@@ -357,7 +333,7 @@
     <div class="section-header">
       <span class="section-icon">💡</span>
       <div>
-        <div class="section-label">META_INSIGHT</div>
+        <div class="section-label" style="color: #a78bfa;">META_INSIGHT</div>
         <div class="section-title">元洞察</div>
       </div>
     </div>
@@ -408,7 +384,7 @@
     <div class="section-header">
       <span class="section-icon">📡</span>
       <div>
-        <div class="section-label">INDUSTRY</div>
+        <div class="section-label" style="color: #60a5fa;">INDUSTRY</div>
         <div class="section-title">行业动态</div>
       </div>
     </div>
@@ -419,17 +395,17 @@
   </div>
   <div class="section-body">
 
-    <div class="news-item">
+    <div class="news-item" style="border-left-color: #60a5fa;">
       <div class="news-header">
         <div class="score-badge">9.2</div>
         <div class="news-title"><a href="https://www.ithome.com/0/926/823.htm" target="_blank">Claude日新增注册超百万，反超ChatGPT登顶App Store</a></div>
       </div>
       <div class="source-tag">IT之家 · Anthropic官方 · 2026.03.05–06</div>
       <div class="fact-grid">
-        <div class="fact-col"><h4>What</h4><p>Claude单日新增注册用户突破百万，在美国App Store免费榜超越ChatGPT登顶，同期出现"QuitGPT"社区运动，大量用户公开宣布从ChatGPT迁移至Claude。</p></div>
-        <div class="fact-col"><h4>How</h4><p>Anthropic通过Claude 3.7系列模型性能提升、Marketplace生态建设和价格策略形成拉力；ChatGPT用户不满情绪（广告植入、响应质量）形成推力。</p></div>
-        <div class="fact-col"><h4>Why</h4><p>消费级AI市场首次出现可量化的大规模用户迁移，证明AI产品忠诚度远低于社交产品。移动端入口争夺已从"拉新"进入"抢存量"阶段。</p></div>
-        <div class="fact-col"><h4>影响与行动</h4><p>Claude用户基数快速增长将反哺Marketplace开发者触达规模；API调用量同步上升，中间件/插件开发者的窗口期正在收窄，建议加快上线节奏。</p></div>
+        <div class="fact-col"><h4 style="color: #60a5fa;">What</h4><p>Claude单日新增注册用户突破百万，在美国App Store免费榜超越ChatGPT登顶，同期出现"QuitGPT"社区运动，大量用户公开宣布从ChatGPT迁移至Claude。</p></div>
+        <div class="fact-col"><h4 style="color: #60a5fa;">How</h4><p>Anthropic通过Claude 3.7系列模型性能提升、Marketplace生态建设和价格策略形成拉力；ChatGPT用户不满情绪（广告植入、响应质量）形成推力。</p></div>
+        <div class="fact-col"><h4 style="color: #60a5fa;">Why</h4><p>消费级AI市场首次出现可量化的大规模用户迁移，证明AI产品忠诚度远低于社交产品。移动端入口争夺已从"拉新"进入"抢存量"阶段。</p></div>
+        <div class="fact-col"><h4 style="color: #60a5fa;">影响与行动</h4><p>Claude用户基数快速增长将反哺Marketplace开发者触达规模；API调用量同步上升，中间件/插件开发者的窗口期正在收窄，建议加快上线节奏。</p></div>
       </div>
       <button class="expand-btn" onclick="toggleCard(this, 'stock-ind1')">📈 股票联动</button>
       <div class="stock-card" id="stock-ind1">
@@ -445,17 +421,17 @@
       </div>
     </div>
 
-    <div class="news-item">
+    <div class="news-item" style="border-left-color: #60a5fa;">
       <div class="news-header">
         <div class="score-badge">9.0</div>
         <div class="news-title"><a href="https://techcrunch.com" target="_blank">Anthropic正式向法院提起诉讼，挑战DoD"关键供应链"指定</a></div>
       </div>
       <div class="source-tag">Reuters · TechCrunch · 2026.03.07–09 (持续事件 03.05起)</div>
       <div class="fact-grid">
-        <div class="fact-col"><h4>What</h4><p>Anthropic正式对美国国防部提起联邦诉讼，挑战DoD将其列为"关键国防技术供应链风险"的行政决定，要求法院撤销该指定并禁止相关限制措施生效。</p></div>
-        <div class="fact-col"><h4>How</h4><p>Anthropic援引行政程序法（APA），主张DoD在未充分告知、未给予抗辩机会的情况下作出指定，程序违法；同时援引其与政府合作记录证明指定缺乏事实依据。</p></div>
-        <div class="fact-col"><h4>Why</h4><p>若DoD指定成立，Anthropic将面临政府合同限制和盟友国采购障碍，实质影响其$380亿估值基本面。此案将成为AI公司能否通过司法途径对抗行政认定的标志性判例。</p></div>
-        <div class="fact-col"><h4>影响与行动</h4><p>Google、微软、AWS已发声明确认可继续商业合作，说明产业界对诉讼走向相对乐观。若Anthropic胜诉，将为AI公司对抗行政干预提供可复用的法律模板。</p></div>
+        <div class="fact-col"><h4 style="color: #60a5fa;">What</h4><p>Anthropic正式对美国国防部提起联邦诉讼，挑战DoD将其列为"关键国防技术供应链风险"的行政决定，要求法院撤销该指定并禁止相关限制措施生效。</p></div>
+        <div class="fact-col"><h4 style="color: #60a5fa;">How</h4><p>Anthropic援引行政程序法（APA），主张DoD在未充分告知、未给予抗辩机会的情况下作出指定，程序违法；同时援引其与政府合作记录证明指定缺乏事实依据。</p></div>
+        <div class="fact-col"><h4 style="color: #60a5fa;">Why</h4><p>若DoD指定成立，Anthropic将面临政府合同限制和盟友国采购障碍，实质影响其$380亿估值基本面。此案将成为AI公司能否通过司法途径对抗行政认定的标志性判例。</p></div>
+        <div class="fact-col"><h4 style="color: #60a5fa;">影响与行动</h4><p>Google、微软、AWS已发声明确认可继续商业合作，说明产业界对诉讼走向相对乐观。若Anthropic胜诉，将为AI公司对抗行政干预提供可复用的法律模板。</p></div>
       </div>
       <button class="expand-btn" onclick="toggleCard(this, 'startup-ind2')">💡 创业灵感</button>
       <div class="startup-card" id="startup-ind2">
@@ -466,17 +442,17 @@
       </div>
     </div>
 
-    <div class="news-item">
+    <div class="news-item" style="border-left-color: #60a5fa;">
       <div class="news-header">
         <div class="score-badge">8.8</div>
         <div class="news-title"><a href="https://techcrunch.com" target="_blank">Google正式声明：无论DoD指定结果如何，将继续支持Anthropic全线商业合作</a></div>
       </div>
       <div class="source-tag">TechCrunch · Google官方声明 · 2026.03.09</div>
       <div class="fact-grid">
-        <div class="fact-col"><h4>What</h4><p>Google DeepMind CEO Demis Hassabis公开表态，Google对Anthropic的投资和云合作不受DoD指定影响，微软、AWS随后发出类似声明，形成产业界集体背书。</p></div>
-        <div class="fact-col"><h4>How</h4><p>三大云厂商通过官方声明稳定市场预期，Google还暗示将在法律层面提供"朋友之诉"意见书支持Anthropic的司法挑战。</p></div>
-        <div class="fact-col"><h4>Why</h4><p>对Google而言，Anthropic是其与OpenAI竞争的关键棋子（持股约15%）；对微软和AWS，则是重要企业AI基础设施供应商。任何一方退出都将削弱自身AI生态竞争力。</p></div>
-        <div class="fact-col"><h4>影响与行动</h4><p>大厂集体声援表明AI产业链已形成互相依存的利益共同体，单一监管动作难以切断商业关系。投资者可将此视为Anthropic估值下行风险的对冲信号。</p></div>
+        <div class="fact-col"><h4 style="color: #60a5fa;">What</h4><p>Google DeepMind CEO Demis Hassabis公开表态，Google对Anthropic的投资和云合作不受DoD指定影响，微软、AWS随后发出类似声明，形成产业界集体背书。</p></div>
+        <div class="fact-col"><h4 style="color: #60a5fa;">How</h4><p>三大云厂商通过官方声明稳定市场预期，Google还暗示将在法律层面提供"朋友之诉"意见书支持Anthropic的司法挑战。</p></div>
+        <div class="fact-col"><h4 style="color: #60a5fa;">Why</h4><p>对Google而言，Anthropic是其与OpenAI竞争的关键棋子（持股约15%）；对微软和AWS，则是重要企业AI基础设施供应商。任何一方退出都将削弱自身AI生态竞争力。</p></div>
+        <div class="fact-col"><h4 style="color: #60a5fa;">影响与行动</h4><p>大厂集体声援表明AI产业链已形成互相依存的利益共同体，单一监管动作难以切断商业关系。投资者可将此视为Anthropic估值下行风险的对冲信号。</p></div>
       </div>
     </div>
 
@@ -489,7 +465,7 @@
     <div class="section-header">
       <span class="section-icon">💰</span>
       <div>
-        <div class="section-label">INVESTMENT</div>
+        <div class="section-label" style="color: #3b82f6;">INVESTMENT</div>
         <div class="section-title">投资融资</div>
       </div>
     </div>
@@ -500,17 +476,17 @@
   </div>
   <div class="section-body">
 
-    <div class="news-item">
+    <div class="news-item" style="border-left-color: #3b82f6;">
       <div class="news-header">
         <div class="score-badge">8.8</div>
         <div class="news-title"><a href="https://techstartups.com/2026/03/03/top-startup-and-tech-funding-news-march-3-2025/" target="_blank">Ayar Labs完成$5亿Series E，NVIDIA/AMD联合领投，估值$38亿</a></div>
       </div>
       <div class="source-tag">TechStartups · 2026.03.03</div>
       <div class="fact-grid">
-        <div class="fact-col"><h4>What</h4><p>MIT衍生公司Ayar Labs完成5亿美元E轮，由NVIDIA和AMD共同领投，卡塔尔投资局、联发科参投，估值达38亿美元。公司开发硅光子芯片，以光替代铜实现AI处理器间数据传输，可实现20倍每瓦吞吐量提升。</p></div>
-        <div class="fact-col"><h4>How</h4><p>NVIDIA/AMD同时投资同一竞争对手，体现战略布局而非单纯财务回报——双方均需要光互连技术解决各自数据中心的带宽瓶颈，市场足够大，无需独家锁定。</p></div>
-        <div class="fact-col"><h4>Why</h4><p>随着AI训练规模指数级扩张，数据在AI芯片间的移动成本已超过计算本身。光互连是下一代AI基础设施的关键使能技术，市场判断商业化时间窗口在2-3年内。</p></div>
-        <div class="fact-col"><h4>影响与行动</h4><p>AI基础设施投资逻辑正从"模型层"下沉至"物理层"。光子芯片、散热技术、电力基础设施将是未来12个月融资热点。关注A股光模块产业链：中际旭创、新易盛、天孚通信。</p></div>
+        <div class="fact-col"><h4 style="color: #3b82f6;">What</h4><p>MIT衍生公司Ayar Labs完成5亿美元E轮，由NVIDIA和AMD共同领投，卡塔尔投资局、联发科参投，估值达38亿美元。公司开发硅光子芯片，以光替代铜实现AI处理器间数据传输，可实现20倍每瓦吞吐量提升。</p></div>
+        <div class="fact-col"><h4 style="color: #3b82f6;">How</h4><p>NVIDIA/AMD同时投资同一竞争对手，体现战略布局而非单纯财务回报——双方均需要光互连技术解决各自数据中心的带宽瓶颈，市场足够大，无需独家锁定。</p></div>
+        <div class="fact-col"><h4 style="color: #3b82f6;">Why</h4><p>随着AI训练规模指数级扩张，数据在AI芯片间的移动成本已超过计算本身。光互连是下一代AI基础设施的关键使能技术，市场判断商业化时间窗口在2-3年内。</p></div>
+        <div class="fact-col"><h4 style="color: #3b82f6;">影响与行动</h4><p>AI基础设施投资逻辑正从"模型层"下沉至"物理层"。光子芯片、散热技术、电力基础设施将是未来12个月融资热点。关注A股光模块产业链：中际旭创、新易盛、天孚通信。</p></div>
       </div>
       <button class="expand-btn" onclick="toggleCard(this, 'stock-inv4')">📈 股票联动</button>
       <div class="stock-card" id="stock-inv4">
@@ -526,17 +502,17 @@
       </div>
     </div>
 
-    <div class="news-item">
+    <div class="news-item" style="border-left-color: #3b82f6;">
       <div class="news-header">
         <div class="score-badge">8.2</div>
         <div class="news-title"><a href="https://techstartups.com/2026/03/03/top-startup-and-tech-funding-news-march-3-2025/" target="_blank">Grow Therapy完成$1.5亿Series D，AI心理健康平台覆盖1.25亿参保人</a></div>
       </div>
       <div class="source-tag">TechStartups · 2026.03.03</div>
       <div class="fact-grid">
-        <div class="fact-col"><h4>What</h4><p>AI驱动心理健康平台Grow Therapy完成1.5亿美元D轮，TCV和高盛联合领投，累计融资3.28亿美元。平台将AI工具与人工治疗师结合，已对接125家保险公司、覆盖2.2亿参保人。</p></div>
-        <div class="fact-col"><h4>How</h4><p>Grow的AI工具将治疗师病历记录时间缩短70%，并提供会话间隔期的AI陪伴支持。通过保险报销而非直接付费的商业模式，有效突破心理健康服务的支付壁垒。</p></div>
-        <div class="fact-col"><h4>Why</h4><p>美国心理健康供给严重不足（等待时间平均3-6个月），AI辅助模型可将治疗师服务容量提升数倍。此次融资体现机构投资者对"AI+人工"混合模式的强烈偏好。</p></div>
-        <div class="fact-col"><h4>影响与行动</h4><p>中国心理健康AI赛道存在类似机会：公立医疗资源不足+保险覆盖不完善。差异在于需通过医疗器械审批。建议关注国内心理健康SaaS和AI辅助诊断公司下一轮融资动向。</p></div>
+        <div class="fact-col"><h4 style="color: #3b82f6;">What</h4><p>AI驱动心理健康平台Grow Therapy完成1.5亿美元D轮，TCV和高盛联合领投，累计融资3.28亿美元。平台将AI工具与人工治疗师结合，已对接125家保险公司、覆盖2.2亿参保人。</p></div>
+        <div class="fact-col"><h4 style="color: #3b82f6;">How</h4><p>Grow的AI工具将治疗师病历记录时间缩短70%，并提供会话间隔期的AI陪伴支持。通过保险报销而非直接付费的商业模式，有效突破心理健康服务的支付壁垒。</p></div>
+        <div class="fact-col"><h4 style="color: #3b82f6;">Why</h4><p>美国心理健康供给严重不足（等待时间平均3-6个月），AI辅助模型可将治疗师服务容量提升数倍。此次融资体现机构投资者对"AI+人工"混合模式的强烈偏好。</p></div>
+        <div class="fact-col"><h4 style="color: #3b82f6;">影响与行动</h4><p>中国心理健康AI赛道存在类似机会：公立医疗资源不足+保险覆盖不完善。差异在于需通过医疗器械审批。建议关注国内心理健康SaaS和AI辅助诊断公司下一轮融资动向。</p></div>
       </div>
       <button class="expand-btn" onclick="toggleCard(this, 'startup-inv5')">💡 创业灵感</button>
       <div class="startup-card" id="startup-inv5">
@@ -547,17 +523,17 @@
       </div>
     </div>
 
-    <div class="news-item">
+    <div class="news-item" style="border-left-color: #3b82f6;">
       <div class="news-header">
         <div class="score-badge">8.3</div>
         <div class="news-title"><a href="https://venturebeat.com" target="_blank">SMACK Technologies完成$3200万融资：前海军陆战队创立的国防专用大模型</a></div>
       </div>
       <div class="source-tag">VentureBeat · 2026.03.02</div>
       <div class="fact-grid">
-        <div class="fact-col"><h4>What</h4><p>由前美国海军陆战队军官创立的SMACK Technologies完成3200万美元融资，旗下Omega和Alpha两款模型专为国防作战场景设计，支持离线部署和战术边缘计算。</p></div>
-        <div class="fact-col"><h4>How</h4><p>SMACK的核心差异化在于"Air-Gap"设计——模型可在完全断网的战术环境中运行，避免敏感数据外传，直接解决了通用大模型用于国防的最大合规障碍。</p></div>
-        <div class="fact-col"><h4>Why</h4><p>恰逢Anthropic被DoD列为供应链风险的舆论背景下，专为国防设计的大模型赛道需求逻辑显著增强。美国国防部正加快AI采购但面临供应商安全资质筛选难题。</p></div>
-        <div class="fact-col"><h4>影响与行动</h4><p>国防AI是未来3年最确定性的政府支出增量之一。创业者可考虑"民用模型+国防合规层"的产品设计，先获认证再拓展业务，降低从零开始的难度。</p></div>
+        <div class="fact-col"><h4 style="color: #3b82f6;">What</h4><p>由前美国海军陆战队军官创立的SMACK Technologies完成3200万美元融资，旗下Omega和Alpha两款模型专为国防作战场景设计，支持离线部署和战术边缘计算。</p></div>
+        <div class="fact-col"><h4 style="color: #3b82f6;">How</h4><p>SMACK的核心差异化在于"Air-Gap"设计——模型可在完全断网的战术环境中运行，避免敏感数据外传，直接解决了通用大模型用于国防的最大合规障碍。</p></div>
+        <div class="fact-col"><h4 style="color: #3b82f6;">Why</h4><p>恰逢Anthropic被DoD列为供应链风险的舆论背景下，专为国防设计的大模型赛道需求逻辑显著增强。美国国防部正加快AI采购但面临供应商安全资质筛选难题。</p></div>
+        <div class="fact-col"><h4 style="color: #3b82f6;">影响与行动</h4><p>国防AI是未来3年最确定性的政府支出增量之一。创业者可考虑"民用模型+国防合规层"的产品设计，先获认证再拓展业务，降低从零开始的难度。</p></div>
       </div>
     </div>
 
@@ -570,7 +546,7 @@
     <div class="section-header">
       <span class="section-icon">🚀</span>
       <div>
-        <div class="section-label">BREAKTHROUGH</div>
+        <div class="section-label" style="color: #22c55e;">BREAKTHROUGH</div>
         <div class="section-title">技术突破</div>
       </div>
     </div>
@@ -581,17 +557,17 @@
   </div>
   <div class="section-body">
 
-    <div class="news-item">
+    <div class="news-item" style="border-left-color: #22c55e;">
       <div class="news-header">
         <div class="score-badge">9.5</div>
         <div class="news-title"><a href="https://github.com/openclaw/openclaw" target="_blank">OpenClaw（"小龙虾"）：60天超越React，26万GitHub星，黄仁勋称"时代最重要软件发布"</a></div>
       </div>
       <div class="source-tag">Wikipedia · CNBC · GitHub · IT之家 · 钛媒体 · 2026.01–03.09</div>
       <div class="fact-grid">
-        <div class="fact-col"><h4>What</h4><p>奥地利开发者Peter Steinberger于2025年11月发布的开源AI Agent平台，原名Clawdbot，2月改名OpenClaw。可通过WhatsApp/Telegram/QQ/飞书/钉钉等IM控制，7×24小时自主执行任务，基于Anthropic MCP协议构建，60天GitHub星数达26万，超越React。2月14日创始人加入OpenAI，项目移交开源基金会。</p></div>
-        <div class="fact-col"><h4>How</h4><p>国内：腾讯云3月6日摆摊免费安装，QQ 3月7日开放官方接入（单账号最多5个机器人）；阿里云、字节火山引擎同步支持。企业微信已可接入，个人微信仅有第三方灰色插件，腾讯已封禁部分账号——左手推广右手封堵，用IM生态圈住流量。</p></div>
-        <div class="fact-col"><h4>Why</h4><p>OpenClaw代表AI从"对话工具"跨越至"自主执行系统"的质变时刻。爆火底层逻辑：开源免费+自托管+IM作为交互入口，极大降低部署门槛。腾讯封堵个人微信，核心是微信生态控制权是其最大护城河，不容第三方在个人微信建立用户关系。</p></div>
-        <div class="fact-col"><h4>影响与行动</h4><p>⚠️ 安全警告：CVE-2026-25253（CVSS 8.8）已公开，单一恶意链接可劫持实例，2.1万个节点暴露在公网，企业使用务必隔离部署。创业机会：企业场景Skills插件、安全合规层、一键部署SaaS。</p></div>
+        <div class="fact-col"><h4 style="color: #22c55e;">What</h4><p>奥地利开发者Peter Steinberger于2025年11月发布的开源AI Agent平台，原名Clawdbot，2月改名OpenClaw。可通过WhatsApp/Telegram/QQ/飞书/钉钉等IM控制，7×24小时自主执行任务，基于Anthropic MCP协议构建，60天GitHub星数达26万，超越React。2月14日创始人加入OpenAI，项目移交开源基金会。</p></div>
+        <div class="fact-col"><h4 style="color: #22c55e;">How</h4><p>国内：腾讯云3月6日摆摊免费安装，QQ 3月7日开放官方接入（单账号最多5个机器人）；阿里云、字节火山引擎同步支持。企业微信已可接入，个人微信仅有第三方灰色插件，腾讯已封禁部分账号——左手推广右手封堵，用IM生态圈住流量。</p></div>
+        <div class="fact-col"><h4 style="color: #22c55e;">Why</h4><p>OpenClaw代表AI从"对话工具"跨越至"自主执行系统"的质变时刻。爆火底层逻辑：开源免费+自托管+IM作为交互入口，极大降低部署门槛。腾讯封堵个人微信，核心是微信生态控制权是其最大护城河，不容第三方在个人微信建立用户关系。</p></div>
+        <div class="fact-col"><h4 style="color: #22c55e;">影响与行动</h4><p>⚠️ 安全警告：CVE-2026-25253（CVSS 8.8）已公开，单一恶意链接可劫持实例，2.1万个节点暴露在公网，企业使用务必隔离部署。创业机会：企业场景Skills插件、安全合规层、一键部署SaaS。</p></div>
       </div>
       <button class="expand-btn" onclick="toggleCard(this, 'startup-tech7')">💡 创业灵感</button>
       <button class="expand-btn" onclick="toggleCard(this, 'stock-tech7')">📈 股票联动</button>
@@ -623,7 +599,7 @@
     <div class="section-header">
       <span class="section-icon">✨</span>
       <div>
-        <div class="section-label">PRODUCT</div>
+        <div class="section-label" style="color: #2dd4bf;">PRODUCT</div>
         <div class="section-title">产品上线</div>
       </div>
     </div>
@@ -634,17 +610,17 @@
   </div>
   <div class="section-body">
 
-    <div class="news-item">
+    <div class="news-item" style="border-left-color: #2dd4bf;">
       <div class="news-header">
         <div class="score-badge">9.3</div>
         <div class="news-title"><a href="https://venturebeat.com" target="_blank">Anthropic Claude Marketplace正式上线：首批6家合作伙伴，0抽佣政策</a></div>
       </div>
       <div class="source-tag">VentureBeat · Anthropic官方 · 2026.03.06–07</div>
       <div class="fact-grid">
-        <div class="fact-col"><h4>What</h4><p>Anthropic推出Claude Marketplace，首批入驻Snowflake、GitLab、Harvey、Replit、Rogo、Lovable六家合作伙伴，覆盖数据库、开发工具、法律、编程、金融、低代码六大企业软件核心场景，对开发者不收取任何分成。</p></div>
-        <div class="fact-col"><h4>How</h4><p>平台允许第三方开发者基于Claude API构建专业应用并直接面向Claude用户分发。0抽佣与Apple App Store（30%）、Google Play（15-30%）形成鲜明对比，意在快速集聚开发者生态。</p></div>
-        <div class="fact-col"><h4>Why</h4><p>Anthropic战略意图清晰：以Claude用户基数（App Store登顶）+0抽佣政策吸引开发者，形成平台飞轮。配合当天Claude App Store登顶，消费端+企业端双重验证同步完成。</p></div>
-        <div class="fact-col"><h4>影响与行动</h4><p>这是2026年最值得关注的B2B开发者机会之一。现有6家合作伙伴未覆盖的高价值垂直行业（医疗、教育、政务、制造）是进入窗口。0抽佣且用户基数快速增长，建议现在就申请接入资格。</p></div>
+        <div class="fact-col"><h4 style="color: #2dd4bf;">What</h4><p>Anthropic推出Claude Marketplace，首批入驻Snowflake、GitLab、Harvey、Replit、Rogo、Lovable六家合作伙伴，覆盖数据库、开发工具、法律、编程、金融、低代码六大企业软件核心场景，对开发者不收取任何分成。</p></div>
+        <div class="fact-col"><h4 style="color: #2dd4bf;">How</h4><p>平台允许第三方开发者基于Claude API构建专业应用并直接面向Claude用户分发。0抽佣与Apple App Store（30%）、Google Play（15-30%）形成鲜明对比，意在快速集聚开发者生态。</p></div>
+        <div class="fact-col"><h4 style="color: #2dd4bf;">Why</h4><p>Anthropic战略意图清晰：以Claude用户基数（App Store登顶）+0抽佣政策吸引开发者，形成平台飞轮。配合当天Claude App Store登顶，消费端+企业端双重验证同步完成。</p></div>
+        <div class="fact-col"><h4 style="color: #2dd4bf;">影响与行动</h4><p>这是2026年最值得关注的B2B开发者机会之一。现有6家合作伙伴未覆盖的高价值垂直行业（医疗、教育、政务、制造）是进入窗口。0抽佣且用户基数快速增长，建议现在就申请接入资格。</p></div>
       </div>
       <button class="expand-btn" onclick="toggleCard(this, 'startup-prod8')">💡 创业灵感</button>
       <div class="startup-card" id="startup-prod8">
@@ -655,17 +631,17 @@
       </div>
     </div>
 
-    <div class="news-item">
+    <div class="news-item" style="border-left-color: #2dd4bf;">
       <div class="news-header">
         <div class="score-badge">9.0</div>
         <div class="news-title"><a href="https://www.ithome.com/0/926/823.htm" target="_blank">腾讯QQ开放OpenClaw官方接入，国内大厂争相布局Agent部署入口</a></div>
       </div>
       <div class="source-tag">IT之家 · 新浪财经 · 钛媒体 · 2026.03.06–07</div>
       <div class="fact-grid">
-        <div class="fact-col"><h4>What</h4><p>腾讯云3月6日深圳总部摆摊免费安装OpenClaw，3月7日QQ开放官方接入（1分钟内完成绑定，单账号最多5个机器人）。阿里云、字节火山引擎同步跟进。企业微信已可接入，个人微信无官方通道，腾讯已封禁部分第三方接入账号。</p></div>
-        <div class="fact-col"><h4>How</h4><p>腾讯战略逻辑：用自家IM生态（QQ/企微）圈住OpenClaw流量，同时通过腾讯云Lighthouse提供部署基础设施——从用户界面到算力基础一并收割。国内大厂积极拥抱的核心原因：OpenClaw是Token消耗大户，直接拉动推理侧算力收入。</p></div>
-        <div class="fact-col"><h4>Why</h4><p>OpenClaw基于Anthropic MCP协议，技能层可跨平台复用，让每个IM平台都有理由成为入口。个人微信被封堵，是因为微信生态控制权是腾讯最大护城河，不允许第三方工具在个人微信中建立用户关系。</p></div>
-        <div class="fact-col"><h4>影响与行动</h4><p>开发者短期内应优先适配企业微信+钉钉+飞书，这是腾讯/阿里/字节愿意主动导流的渠道。避免依赖个人微信接入，封号风险高。长期关注腾讯是否推出官方"微信版Claw"——那将是消费端Agent最大的爆发点。</p></div>
+        <div class="fact-col"><h4 style="color: #2dd4bf;">What</h4><p>腾讯云3月6日深圳总部摆摊免费安装OpenClaw，3月7日QQ开放官方接入（1分钟内完成绑定，单账号最多5个机器人）。阿里云、字节火山引擎同步跟进。企业微信已可接入，个人微信无官方通道，腾讯已封禁部分第三方接入账号。</p></div>
+        <div class="fact-col"><h4 style="color: #2dd4bf;">How</h4><p>腾讯战略逻辑：用自家IM生态（QQ/企微）圈住OpenClaw流量，同时通过腾讯云Lighthouse提供部署基础设施——从用户界面到算力基础一并收割。国内大厂积极拥抱的核心原因：OpenClaw是Token消耗大户，直接拉动推理侧算力收入。</p></div>
+        <div class="fact-col"><h4 style="color: #2dd4bf;">Why</h4><p>OpenClaw基于Anthropic MCP协议，技能层可跨平台复用，让每个IM平台都有理由成为入口。个人微信被封堵，是因为微信生态控制权是腾讯最大护城河，不允许第三方工具在个人微信中建立用户关系。</p></div>
+        <div class="fact-col"><h4 style="color: #2dd4bf;">影响与行动</h4><p>开发者短期内应优先适配企业微信+钉钉+飞书，这是腾讯/阿里/字节愿意主动导流的渠道。避免依赖个人微信接入，封号风险高。长期关注腾讯是否推出官方"微信版Claw"——那将是消费端Agent最大的爆发点。</p></div>
       </div>
       <button class="expand-btn" onclick="toggleCard(this, 'startup-prod9')">💡 创业灵感</button>
       <button class="expand-btn" onclick="toggleCard(this, 'stock-prod9')">📈 股票联动</button>
@@ -697,7 +673,7 @@
     <div class="section-header">
       <span class="section-icon">🎓</span>
       <div>
-        <div class="section-label">EDUCATION</div>
+        <div class="section-label" style="color: #38bdf8;">EDUCATION</div>
         <div class="section-title">教育资讯</div>
       </div>
     </div>
@@ -708,31 +684,31 @@
   </div>
   <div class="section-body">
 
-    <div class="news-item">
+    <div class="news-item" style="border-left-color: #38bdf8;">
       <div class="news-header">
         <div class="score-badge">8.3</div>
         <div class="news-title"><a href="https://www.insidehighered.com" target="_blank">圣何塞市与圣何塞州立大学联合开设全美首个公众免费AI技能中心</a></div>
       </div>
       <div class="source-tag">Inside Higher Ed · 2026.03.04</div>
       <div class="fact-grid">
-        <div class="fact-col"><h4>What</h4><p>加利福尼亚州圣何塞市政府与圣何塞州立大学宣布合作，在市中心开设对所有公众免费开放的AI技能培训中心，提供从AI基础认知到编程实操的分级课程体系。</p></div>
-        <div class="fact-col"><h4>How</h4><p>中心采用"政府出地+大学出师资+科技公司出设备"三方合作模式，课程从每周一次的入门工作坊到12周沉浸式训练营分层设计，面向失业工人、在职转岗人员和在校学生。</p></div>
-        <div class="fact-col"><h4>Why</h4><p>硅谷核心城市主动布局AI再教育基础设施，反映政府对AI导致结构性失业的现实焦虑。该模式若有效，将成为其他城市参考模板，也意味着AI职业教育的公共采购市场即将形成。</p></div>
-        <div class="fact-col"><h4>影响与行动</h4><p>政府主导的AI职业教育正在成型，内容供应商（课程、认证、实训平台）将面临大规模采购机会。关注政府AI教育标准制定动向，提前布局认证体系合作。</p></div>
+        <div class="fact-col"><h4 style="color: #38bdf8;">What</h4><p>加利福尼亚州圣何塞市政府与圣何塞州立大学宣布合作，在市中心开设对所有公众免费开放的AI技能培训中心，提供从AI基础认知到编程实操的分级课程体系。</p></div>
+        <div class="fact-col"><h4 style="color: #38bdf8;">How</h4><p>中心采用"政府出地+大学出师资+科技公司出设备"三方合作模式，课程从每周一次的入门工作坊到12周沉浸式训练营分层设计，面向失业工人、在职转岗人员和在校学生。</p></div>
+        <div class="fact-col"><h4 style="color: #38bdf8;">Why</h4><p>硅谷核心城市主动布局AI再教育基础设施，反映政府对AI导致结构性失业的现实焦虑。该模式若有效，将成为其他城市参考模板，也意味着AI职业教育的公共采购市场即将形成。</p></div>
+        <div class="fact-col"><h4 style="color: #38bdf8;">影响与行动</h4><p>政府主导的AI职业教育正在成型，内容供应商（课程、认证、实训平台）将面临大规模采购机会。关注政府AI教育标准制定动向，提前布局认证体系合作。</p></div>
       </div>
     </div>
 
-    <div class="news-item">
+    <div class="news-item" style="border-left-color: #38bdf8;">
       <div class="news-header">
         <div class="score-badge">8.2</div>
         <div class="news-title"><a href="https://www.insidehighered.com" target="_blank">明尼苏达大学启动全校AI Hub，设立全美首批"首席AI副教务长"职位</a></div>
       </div>
       <div class="source-tag">Inside Higher Ed · 2026.03.04</div>
       <div class="fact-grid">
-        <div class="fact-col"><h4>What</h4><p>明尼苏达大学宣布设立校级AI Hub，并创建"首席AI副教务长"（Associate Provost for AI）新职位，负责统筹全校AI战略、政策制定和跨学院AI研究协调，成为全美首批在行政层面正式建立AI治理架构的旗舰研究型大学。</p></div>
-        <div class="fact-col"><h4>How</h4><p>AI Hub将整合计算机科学、医学、法学、商学等学院AI研究力量，建立统一的计算资源调配机制和伦理审查框架，同时推动AI技能纳入全校通识必修课。</p></div>
-        <div class="fact-col"><h4>Why</h4><p>研究型大学设立专门AI治理职位，意味着AI已从"各院系自选动作"升级为"校级战略基础设施"。这预示高校AI相关预算（软件、咨询、培训）将在未来2年大幅增加。</p></div>
-        <div class="fact-col"><h4>影响与行动</h4><p>高校AI治理和基础设施建设是被严重低估的企业级市场。面向大学的AI合规管理平台、AI使用行为分析工具、面向教职工的AI培训认证，都将迎来确定性采购机会。</p></div>
+        <div class="fact-col"><h4 style="color: #38bdf8;">What</h4><p>明尼苏达大学宣布设立校级AI Hub，并创建"首席AI副教务长"（Associate Provost for AI）新职位，负责统筹全校AI战略、政策制定和跨学院AI研究协调，成为全美首批在行政层面正式建立AI治理架构的旗舰研究型大学。</p></div>
+        <div class="fact-col"><h4 style="color: #38bdf8;">How</h4><p>AI Hub将整合计算机科学、医学、法学、商学等学院AI研究力量，建立统一的计算资源调配机制和伦理审查框架，同时推动AI技能纳入全校通识必修课。</p></div>
+        <div class="fact-col"><h4 style="color: #38bdf8;">Why</h4><p>研究型大学设立专门AI治理职位，意味着AI已从"各院系自选动作"升级为"校级战略基础设施"。这预示高校AI相关预算（软件、咨询、培训）将在未来2年大幅增加。</p></div>
+        <div class="fact-col"><h4 style="color: #38bdf8;">影响与行动</h4><p>高校AI治理和基础设施建设是被严重低估的企业级市场。面向大学的AI合规管理平台、AI使用行为分析工具、面向教职工的AI培训认证，都将迎来确定性采购机会。</p></div>
       </div>
       <button class="expand-btn" onclick="toggleCard(this, 'startup-edu11')">💡 创业灵感</button>
       <div class="startup-card" id="startup-edu11">
@@ -743,17 +719,17 @@
       </div>
     </div>
 
-    <div class="news-item">
+    <div class="news-item" style="border-left-color: #38bdf8;">
       <div class="news-header">
         <div class="score-badge">8.1</div>
         <div class="news-title"><a href="https://www.npr.org" target="_blank">NPR深度报道：85%大学生在用AI，教授中仅40%，代际鸿沟正在重塑课堂</a></div>
       </div>
       <div class="source-tag">NPR Education · 2026.03.03</div>
       <div class="fact-grid">
-        <div class="fact-col"><h4>What</h4><p>NPR联合多所大学发布调研：85%本科生在学业中使用AI工具，但仅40%教授在课程中主动整合AI。使用AI学生的GPA普遍高于不使用者0.3-0.5分，但教授对"AI辅助作业"的判定标准差异极大。</p></div>
-        <div class="fact-col"><h4>How</h4><p>学生AI使用主要集中在写作润色（78%）、概念解释（65%）、代码调试（52%）。教授抵制主要来自"无法评估真实学习成果"的焦虑。部分院校已开始要求"AI使用声明"替代传统诚信承诺。</p></div>
-        <div class="fact-col"><h4>Why</h4><p>代际AI使用鸿沟折射更深层问题：现行大学课程体系是否还能评估"人类原创能力"，以及"AI辅助"与"AI替代"的教育边界在哪里。这个问题未来5年内不会有标准答案。</p></div>
-        <div class="fact-col"><h4>影响与行动</h4><p>教授AI使用率低（40%）意味着教职工AI培训市场有极大空间。面向高校教师的AI教学法工作坊、AI融入课程设计工具，都是当前被低估的产品方向，决策周期短、采购金额适中。</p></div>
+        <div class="fact-col"><h4 style="color: #38bdf8;">What</h4><p>NPR联合多所大学发布调研：85%本科生在学业中使用AI工具，但仅40%教授在课程中主动整合AI。使用AI学生的GPA普遍高于不使用者0.3-0.5分，但教授对"AI辅助作业"的判定标准差异极大。</p></div>
+        <div class="fact-col"><h4 style="color: #38bdf8;">How</h4><p>学生AI使用主要集中在写作润色（78%）、概念解释（65%）、代码调试（52%）。教授抵制主要来自"无法评估真实学习成果"的焦虑。部分院校已开始要求"AI使用声明"替代传统诚信承诺。</p></div>
+        <div class="fact-col"><h4 style="color: #38bdf8;">Why</h4><p>代际AI使用鸿沟折射更深层问题：现行大学课程体系是否还能评估"人类原创能力"，以及"AI辅助"与"AI替代"的教育边界在哪里。这个问题未来5年内不会有标准答案。</p></div>
+        <div class="fact-col"><h4 style="color: #38bdf8;">影响与行动</h4><p>教授AI使用率低（40%）意味着教职工AI培训市场有极大空间。面向高校教师的AI教学法工作坊、AI融入课程设计工具，都是当前被低估的产品方向，决策周期短、采购金额适中。</p></div>
       </div>
     </div>
 
