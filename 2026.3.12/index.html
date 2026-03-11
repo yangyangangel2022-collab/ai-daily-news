@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>AI 每日情报 · 2026.03.12</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg: #0f111a;
+            --surface: #161a28;
+            --surface2: #1e2336;
+            --border: rgba(255,255,255,0.08);
+            --text: #ffffff;
+            --text-muted: #94a3b8;
+            --purple: #a78bfa;
+            --blue: #60a5fa;
+            --deep-blue: #3b82f6;
+            --green: #22c55e;
+            --cyan: #2dd4bf;
+            --sky: #38bdf8;
+            --yellow: #fbbf24;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px 30px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 32px;
+        }
+        
+        .header-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--blue);
+            border: 1px solid var(--blue);
+            border-radius: 24px;
+            padding: 4px 14px;
+            margin-bottom: 16px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #667eea, #764ba2, #a78bfa, #60a5fa, #3b82f6);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 8s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .header-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 15px;
+            color: #a5b4fc;
+        }
+        
+        /* Section */
+        .section {
+            margin-bottom: 24px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: var(--surface);
+            cursor: pointer;
+            transition: background 0.2s;
+            user-select: none;
+        }
+        
+        .section-header:hover {
+            background: var(--surface2);
+        }
+        
+        .section-icon {
+            font-size: 28px;
+        }
+        
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.55;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        
+        .section-count {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        
+        .section-toggle {
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+        
+        .section.open .section-toggle {
+            transform: rotate(180deg);
+        }
+        
+        .section-body {
+            padding: 0 20px 20px;
+        }
+        
+        .section.collapsed .section-body {
+            display: none;
+        }
+        
+        /* 六板块顶部彩色边框 */
+        .s-meta     { border-top: 3px solid var(--purple); }
+        .s-industry { border-top: 3px solid var(--blue); }
+        .s-invest   { border-top: 3px solid var(--deep-blue); }
+        .s-tech     { border-top: 3px solid var(--green); }
+        .s-product  { border-top: 3px solid var(--cyan); }
+        .s-edu      { border-top: 3px solid var(--sky); }
+        
+        /* News Item */
+        .news-item {
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            padding-left: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-left: 4px solid;
+        }
+        
+        .s-meta .news-item { border-left-color: var(--purple); }
+        .s-industry .news-item { border-left-color: var(--blue); }
+        .s-invest .news-item { border-left-color: var(--deep-blue); }
+        .s-tech .news-item { border-left-color: var(--green); }
+        .s-product .news-item { border-left-color: var(--cyan); }
+        .s-edu .news-item { border-left-color: var(--sky); }
+        
+        .news-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .score-badge {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            color: var(--yellow);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .news-title {
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+        
+        .news-title a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .news-title a:hover {
+            color: var(--blue);
+        }
+        
+        .source-tag {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+        
+        /* Fact Grid */
+        .fact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 14px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .fact-col {
+            padding: 0;
+            min-width: 0;
+            overflow: hidden;
+            max-width: 100%;
+        }
+        
+        .fact-col h4 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+        
+        .s-meta .fact-col h4 { color: var(--purple); }
+        .s-industry .fact-col h4 { color: var(--blue); }
+        .s-invest .fact-col h4 { color: var(--deep-blue); }
+        .s-tech .fact-col h4 { color: var(--green); }
+        .s-product .fact-col h4 { color: var(--cyan); }
+        .s-edu .fact-col h4 { color: var(--sky); }
+        
+        .fact-col p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #d4d8e8;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            white-space: normal;
+        }
+        
+        /* Meta Card */
+        .meta-card {
+            background: #161a28;
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin-top: 16px;
+            border: 1px solid rgba(167,139,250,0.15);
+            border-left: 3px solid var(--purple);
+        }
+        
+        .meta-card h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--purple);
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        .meta-card ul {
+            padding-left: 18px;
+        }
+        
+        .meta-card ul li {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #c8cde0;
+            margin-bottom: 4px;
+        }
+        
+        /* Expand Button */
+        .expand-btn {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-muted);
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            border-radius: 6px;
+            padding: 4px 10px;
+            cursor: pointer;
+            margin-right: 8px;
+            margin-top: 10px;
+            transition: all 0.2s;
+        }
+        
+        .expand-btn:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        
+        /* Startup Card */
+        .startup-card, .stock-card {
+            margin-top: 10px;
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: 14px;
+            line-height: 1.7;
+            display: none;
+        }
+        
+        .startup-card {
+            border: 2px solid rgba(96,165,250,0.4);
+            background: rgba(96,165,250,0.05);
+        }
+        
+        .stock-card {
+            border: 2px solid rgba(34,197,94,0.4);
+            background: rgba(34,197,94,0.05);
+        }
+        
+        .startup-card.show, .stock-card.show {
+            display: block;
+        }
+        
+        /* Stats Footer */
+        .stats-footer {
+            margin-top: 40px;
+            padding: 0 20px 40px;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 24px 16px 20px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--blue);
+            margin-bottom: 6px;
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .footer-credit {
+            font-size: 13px;
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 860px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .fact-grid  { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (max-width: 680px) {
+            body            { font-size: 14px; }
+            .header         { padding: 32px 16px 22px; }
+            .header h1      { font-size: 2rem; }
+            .header-meta    { font-size: 12px; gap: 14px; }
+            .header-badge   { font-size: 9px; letter-spacing: 1px; }
+            .container      { padding: 16px 12px 20px; }
+            .stats-footer   { padding: 0 12px 40px; }
+            .stats-grid     { gap: 10px; }
+            .stat-card      { padding: 20px 10px 16px; border-radius: 10px; }
+            .stat-number    { font-size: 36px; }
+            .stat-label     { font-size: 12px; }
+            .section        { margin-bottom: 14px; border-radius: 10px; }
+            .section-body   { padding: 0 14px 20px; }
+            .section-header { padding: 14px 16px; }
+            .section-icon   { font-size: 22px; }
+            .section-title  { font-size: 18px; }
+            .section-label  { font-size: 10px; }
+            .section-count  { font-size: 12px; }
+            .news-item      { padding-left: 12px; margin-bottom: 28px; padding-bottom: 22px; }
+            .news-header    { gap: 8px; margin-top: 20px; margin-bottom: 10px; }
+            .news-title     { font-size: 15px; }
+            .score-badge    { font-size: 11px; padding: 2px 7px; }
+            .fact-grid      { grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+            .fact-col h4    { font-size: 11px; }
+            .fact-col p     { font-size: 13px; line-height: 1.7; }
+            .meta-card      { padding: 14px; margin-top: 14px; }
+            .meta-card h4   { font-size: 11px; }
+            .meta-card ul li { font-size: 13px; }
+            .startup-card, .stock-card { font-size: 13px; padding: 12px; }
+            .expand-btn     { font-size: 11px; }
+            .footer-credit  { font-size: 12px; }
+        }
+        
+        @media (max-width: 420px) {
+            .fact-grid   { grid-template-columns: 1fr; gap: 12px; }
+            .stats-grid  { grid-template-columns: repeat(2, 1fr); }
+            .stat-number { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-badge">LIVE · AI INTELLIGENCE DAILY</div>
+            <h1><span class="gradient-text">AI 每日情报</span></h1>
+            <div class="header-meta">
+                <span>2026.03.12</span>
+                <span>实时抓取</span>
+            </div>
+        </header>
+        
+        <!-- 1. 元洞察（默认展开） -->
+        <div class="section s-meta open" id="sec-meta">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="section-icon">💡</span>
+                <div>
+                    <div class="section-label" style="color: var(--purple);">META_INSIGHT</div>
+                    <div class="section-title">元洞察</div>
+                </div>
+                <span class="section-count">
+                    <span>4</span>
+                    <span class="section-toggle">▾</span>
+                </span>
+            </div>
+            <div class="section-body">
+                <div class="meta-card">
+                    <h4>📊 今日趋势扫描</h4>
+                    <ul>
+                        <li>微软集成 Claude 进 M365，AI Agent 进入 10 亿用户</li>
+                        <li>OpenAI 收购 Promptfoo，抢占 AI 安全基础设施</li>
+                        <li>Figure 机器人完成家庭通用任务，具身智能商业化加速</li>
+                    </ul>
+                </div>
+                <div class="meta-card">
+                    <h4>🔗 跨板块关联</h4>
+                    <ul>
+                        <li>微软 Copilot Cowork → 冲击传统 RPA/低代码市场 → 用友网络等本土厂商面临转型压力</li>
+                        <li>Legora $55 亿融资 → 验证垂直 AI+ 专业服务模式 → 法律/医疗/金融 AI 赛道估值重估</li>
+                        <li>Figure Helix 02 突破 → 机器人产业链情绪提振 → 三花智控等零部件供应商受益</li>
+                    </ul>
+                </div>
+                <div class="meta-card">
+                    <h4>💼 创业方向建议</h4>
+                    <ul>
+                        <li><strong>短期（3-6 月）</strong>：企业 Agent 任务审计与合规中间件</li>
+                        <li><strong>中期（6-12 月）</strong>：Agent 编排工作台、法律 AI 本土化</li>
+                        <li><strong>长期（1-2 年）</strong>：机器人 AI 微调服务、边缘语音助手</li>
+                    </ul>
+                </div>
+                <div class="meta-card">
+                    <h4>⚠️ 风险预警</h4>
+                    <ul>
+                        <li>腾讯上线"鹅虾"Agent 平台，独立 SaaS 创业者需尽快接入主流生态</li>
+                        <li>Google Gemini in Sheets 测试版发布，数据分析培训市场转向 Prompting</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 2. 行业动态（默认折叠） -->
+        <div class="section s-industry collapsed" id="sec-industry">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="section-icon">📡</span>
+                <div>
+                    <div class="section-label" style="color: var(--blue);">INDUSTRY</div>
+                    <div class="section-title">行业动态</div>
+                </div>
+                <span class="section-count">
+                    <span>2 篇</span>
+                    <span class="section-toggle">▾</span>
+                </span>
+            </div>
+            <div class="section-body">
+                <!-- OpenAI Promptfoo -->
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="score-badge">9.1</div>
+                        <div class="news-title"><a href="#" target="_blank">OpenAI 宣布收购 Promptfoo，一家 AI 安全平台</a></div>
+                    </div>
+                    <div class="source-tag">OpenAI Blog · 2026.03.09</div>
+                    <div class="fact-grid">
+                        <div class="fact-col">
+                            <h4 style="color: var(--blue);">What</h4>
+                            <p>OpenAI 宣布收购 Promptfoo，一家帮助企业在开发阶段识别并修复 AI 系统漏洞的安全平台。收购完成后，Promptfoo 技术将整合进 OpenAI Frontier 企业 Agent 平台。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--blue);">How</h4>
+                            <p>Promptfoo 提供自动化红队测试、越狱检测、提示注入防御等功能，支持在 CI/CD 流水线中嵌入 AI 安全测试。收购价格未披露。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--blue);">Why</h4>
+                            <p>随着企业大规模部署自主 AI Agent，安全漏洞风险急剧上升。OpenAI 此举是在抢占"可信 AI 基础设施"的战略制高点。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--blue);">影响与行动</h4>
+                            <p>AI 安全赛道被顶级实验室直接验证，独立 AI 安全公司估值将重新评估；创业者可聚焦 OpenAI 不会覆盖的垂直场景。</p>
+                        </div>
+                    </div>
+                    <button class="expand-btn" onclick="toggleCard(this, 'startup-promptfoo')">💡 创业灵感</button>
+                    <div class="startup-card" id="startup-promptfoo">
+                        <strong>💡 创业灵感</strong><br>
+                        <strong>做什么：</strong>为中国企业市场打造本土化 AI 安全红队测试平台，专注国内大模型（文心、通义、混元等）的漏洞测试与合规评估<br>
+                        <strong>切入点：</strong>等保 2.0 + AI 安全监管新规驱动，金融、政府、医疗行业有强制合规需求<br>
+                        <strong>为什么现在：</strong>Promptfoo 被收购验证赛道价值，但国内市场尚无对应产品，进入窗口期约 12 个月
+                    </div>
+                </div>
+                
+                <!-- Jeff Dean -->
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="score-badge">8.7</div>
+                        <div class="news-title"><a href="#" target="_blank">Google 首席科学家 Jeff Dean 预言：未来每个开发者将同时管理约 50 个 AI 智能体</a></div>
+                    </div>
+                    <div class="source-tag">量子位 · 2026.03.10</div>
+                    <div class="fact-grid">
+                        <div class="fact-col">
+                            <h4 style="color: var(--blue);">What</h4>
+                            <p>Google 首席科学家 Jeff Dean 在最新访谈中预言，未来每个开发者将同时管理约 50 个 AI 智能体并发工作，需求描述（Prompting）而非代码编写将成为工程师的核心竞争力。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--blue);">How</h4>
+                            <p>Jeff Dean 还揭秘了蒸馏技术是 Google Flash 系列模型突破的关键——通过将大模型知识蒸馏到小模型，Flash 在保持推理质量的同时大幅降低计算成本。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--blue);">Why</h4>
+                            <p>来自 Google AI 最顶级科学家的预判，代表着 AI 行业对"Agent 规模化使用"时间线的最权威判断。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--blue);">影响与行动</h4>
+                            <p>技术人员应立即开始系统性学习 Agent 编排与需求工程；教育赛道出现新机会——"Agent 管理师"培训课程。</p>
+                        </div>
+                    </div>
+                    <button class="expand-btn" onclick="toggleCard(this, 'startup-agent')">💡 创业灵感</button>
+                    <div class="startup-card" id="startup-agent">
+                        <strong>💡 创业灵感</strong><br>
+                        <strong>做什么：</strong>打造"Agent 编排工作台"产品，让工程师和非技术产品经理都能可视化管理 50+ 并发 AI Agent 任务<br>
+                        <strong>切入点：</strong>从软件开发团队切入，提供 Agent 任务调度、成本监控、质量评估的一体化管理平台<br>
+                        <strong>为什么现在：</strong>Jeff Dean 的预言代表行业共识正在形成，产品需求将在 1-2 年内爆发，先行者优势显著
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 3. 投资融资（默认折叠） -->
+        <div class="section s-invest collapsed" id="sec-invest">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="section-icon">💰</span>
+                <div>
+                    <div class="section-label" style="color: var(--deep-blue);">INVESTMENT</div>
+                    <div class="section-title">投资融资</div>
+                </div>
+                <span class="section-count">
+                    <span>2 篇</span>
+                    <span class="section-toggle">▾</span>
+                </span>
+            </div>
+            <div class="section-body">
+                <!-- Legora -->
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="score-badge">9.5</div>
+                        <div class="news-title"><a href="#" target="_blank">瑞典法律 AI 公司 Legora 完成 5.5 亿美元 D 轮融资，估值 55.5 亿美元</a></div>
+                    </div>
+                    <div class="source-tag">Reuters · 2026.03.10</div>
+                    <div class="fact-grid">
+                        <div class="fact-col">
+                            <h4 style="color: var(--deep-blue);">What</h4>
+                            <p>Legora 完成 5.5 亿美元 D 轮融资，由 Accel 领投，估值 55.5 亿美元——较上一轮翻了三倍，成为全球估值最高的垂直法律 AI 公司之一。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--deep-blue);">How</h4>
+                            <p>将在休斯顿和芝加哥新设办公室，2026 年底前扩招至 300 人以上，产品覆盖合同审查、法规检索、诉讼策略等法律工作流。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--deep-blue);">Why</h4>
+                            <p>法律服务是全球规模超过 1 万亿美元的专业服务市场，AI 渗透率极低。融资规模说明顶级投资人认为垂直 AI+ 专业服务的商业模式已验证。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--deep-blue);">影响与行动</h4>
+                            <p>中国法律 AI 赛道对标机会明显，国内法律服务市场规模约 2000 亿人民币且 AI 化程度更低；关注同赛道竞品动向。</p>
+                        </div>
+                    </div>
+                    <button class="expand-btn" onclick="toggleCard(this, 'startup-legora')">💡 创业灵感</button>
+                    <div class="startup-card" id="startup-legora">
+                        <strong>💡 创业灵感</strong><br>
+                        <strong>做什么：</strong>打造"中国版 Legora"，专注律所合同审查、案例检索、文书生成的一体化 AI 助手，深度整合中国法律法规数据库<br>
+                        <strong>切入点：</strong>先从中小律所的合同审查切入，以低价 SaaS 模式快速跑量，积累数据后升级大客户版<br>
+                        <strong>为什么现在：</strong>Legora $55 亿估值证明市场空间极大，国内尚无同等级竞争对手，窗口期约 18 个月
+                    </div>
+                    <button class="expand-btn" onclick="toggleCard(this, 'stock-legora')">📈 股票联动</button>
+                    <div class="stock-card" id="stock-legora">
+                        <strong>📈 A 股强关联标的</strong><br>
+                        同花顺 (300033) 综合分 3.5 分🟡<br><br>
+                        <strong>评分明细:</strong><br>
+                        • Logic(逻辑链): 3/5 - 法律 AI 融资热潮带动 AI+ 垂直专业服务板块估值联动<br>
+                        • Timing(时效): 4/5 - 融资消息新鲜，市场情绪催化<br>
+                        • Certainty(确定性): 3/5 - 间接关联，需关注 A 股法律科技板块反应<br>
+                        • Position(地位): 3/5 - 同花顺旗下有法律数据业务，有一定关联度<br>
+                        • Linkage(关联度): 4/5 - 国内投资人关注度高，有望带动相关概念股<br><br>
+                        <strong>投资逻辑：</strong>Legora 融资将带动全球法律 AI 赛道热度，A 股中涉及法律大数据/合规 AI 的公司受到边际关注。更直接的投资机会在一级市场。
+                    </div>
+                </div>
+                
+                <!-- AMI Labs -->
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="score-badge">9.8</div>
+                        <div class="news-title"><a href="#" target="_blank">AMI Labs 获 10.3 亿美元种子轮，欧洲最大 AI 融资</a></div>
+                    </div>
+                    <div class="source-tag">36kr · 2026.03.10</div>
+                    <div class="fact-grid">
+                        <div class="fact-col">
+                            <h4 style="color: var(--deep-blue);">What</h4>
+                            <p>AMI Labs 完成 10.3 亿美元种子轮融资，成为欧洲历史上最大的 AI 公司种子轮。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--deep-blue);">How</h4>
+                            <p>融资将用于技术研发和团队扩张，重点突破 AI 基础设施领域。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--deep-blue);">Why</h4>
+                            <p>顶级资本对 AI 基础设施赛道的持续看好，欧洲 AI 创业生态崛起。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--deep-blue);">影响与行动</h4>
+                            <p>AI 基础设施赛道估值重估，关注国内对标企业融资机会。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 4. 技术突破（默认折叠） -->
+        <div class="section s-tech collapsed" id="sec-tech">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="section-icon">🚀</span>
+                <div>
+                    <div class="section-label" style="color: var(--green);">BREAKTHROUGH</div>
+                    <div class="section-title">技术突破</div>
+                </div>
+                <span class="section-count">
+                    <span>3 篇</span>
+                    <span class="section-toggle">▾</span>
+                </span>
+            </div>
+            <div class="section-body">
+                <!-- Figure Helix 02 -->
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="score-badge">9.3</div>
+                        <div class="news-title"><a href="#" target="_blank">Figure 机器人展示 Helix 02，可全程自主完成收拾客厅任务</a></div>
+                    </div>
+                    <div class="source-tag">量子位 · 2026.03.10</div>
+                    <div class="fact-grid">
+                        <div class="fact-col">
+                            <h4 style="color: var(--green);">What</h4>
+                            <p>Figure 机器人展示最新具身大脑 Helix 02，可全程自主完成收拾客厅任务，包括识别、抓取、归位等复杂动作序列，全程无人工干预，估值已达 390 亿美元。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--green);">How</h4>
+                            <p>Helix 02 基于端到端神经网络架构，通过大规模真实场景数据训练，直接从视觉感知输出运动控制，摒弃传统模块化分层设计。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--green);">Why</h4>
+                            <p>"收拾客厅"是具身智能最复杂的非结构化任务之一，这一演示标志着机器人从"工厂单一任务"迈向"家庭通用任务"的实质性跨越。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--green);">影响与行动</h4>
+                            <p>家庭服务机器人市场即将进入实质性商业化阶段；关注国内 Figure 竞品（宇树、智元、优必选）的端到端能力进展。</p>
+                        </div>
+                    </div>
+                    <button class="expand-btn" onclick="toggleCard(this, 'stock-figure')">📈 股票联动</button>
+                    <div class="stock-card" id="stock-figure">
+                        <strong>📈 A 股强关联标的</strong><br>
+                        三花智控 (002050) 综合分 4.1 分🔴<br><br>
+                        <strong>评分明细:</strong><br>
+                        • Logic(逻辑链): 4/5 - 具身机器人商业化加速，机器人精密执行器/热管理零部件需求直接受益<br>
+                        • Timing(时效): 4/5 - Figure 最新演示代表技术突破节点，时机敏感<br>
+                        • Certainty(确定性): 4/5 - 机器人产业趋势确定，零部件需求可预见<br>
+                        • Position(地位): 4/5 - 三花是机器人热管理及精密部件核心供应商<br>
+                        • Linkage(关联度): 4/5 - A 股机器人板块与全球机器人进展高度联动<br><br>
+                        <strong>投资逻辑：</strong>Figure Helix 02 突破将提振全球机器人产业链情绪。A 股机器人概念股受益产业化预期提前。重点关注具有全球供应链地位的精密零部件企业。
+                    </div>
+                </div>
+                
+                <!-- Pokémon Go -->
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="score-badge">8.9</div>
+                        <div class="news-title"><a href="#" target="_blank">Pokémon Go 训练世界模型帮助配送机器人</a></div>
+                    </div>
+                    <div class="source-tag">MIT Tech Review · 2026.03.11</div>
+                    <div class="fact-grid">
+                        <div class="fact-col">
+                            <h4 style="color: var(--green);">What</h4>
+                            <p>研究人员利用 Pokémon Go 游戏训练世界模型，帮助配送机器人在复杂环境中导航和决策。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--green);">How</h4>
+                            <p>游戏提供大量虚拟导航数据，用于训练机器人的空间理解和路径规划能力。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--green);">Why</h4>
+                            <p>游戏数据成本低、规模大，是训练机器人世界模型的优质数据源。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--green);">影响与行动</h4>
+                            <p>游戏 +AI 训练模式可能成为机器人行业新趋势，关注相关数据服务商。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CoT-Control -->
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="score-badge">9.0</div>
+                        <div class="news-title"><a href="#" target="_blank">OpenAI 发布 CoT-Control 研究，发现思维链具有"不可控性"</a></div>
+                    </div>
+                    <div class="source-tag">OpenAI Blog · 2026.03.09</div>
+                    <div class="fact-grid">
+                        <div class="fact-col">
+                            <h4 style="color: var(--green);">What</h4>
+                            <p>OpenAI 发现推理模型的思维链具有"不可控性"——模型难以按照外部指令伪造或操纵其推理过程。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--green);">How</h4>
+                            <p>研究团队通过大量实验尝试让模型控制/伪装自己的推理链，发现模型倾向于"真实推理"而无法可靠地欺骗监控系统。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--green);">Why</h4>
+                            <p>AI 对齐的核心挑战之一是"模型是否会欺骗监控系统"。这一发现从实验层面证明，推理模型的思维链可作为可信的监控信号。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--green);">影响与行动</h4>
+                            <p>AI 监管机构将更倾向于要求模型暴露推理链作为合规依据；创业机会：基于 CoT 可监控性构建"AI 决策审计"产品。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 5. 产品上线（默认折叠） -->
+        <div class="section s-product collapsed" id="sec-product">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="section-icon">✨</span>
+                <div>
+                    <div class="section-label" style="color: var(--cyan);">PRODUCT</div>
+                    <div class="section-title">产品上线</div>
+                </div>
+                <span class="section-count">
+                    <span>4 篇</span>
+                    <span class="section-toggle">▾</span>
+                </span>
+            </div>
+            <div class="section-body">
+                <!-- Microsoft Copilot Cowork -->
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="score-badge">9.6</div>
+                        <div class="news-title"><a href="#" target="_blank">微软在 M365 Copilot 中集成 Anthropic 的 Claude 技术，推出 Copilot Cowork</a></div>
+                    </div>
+                    <div class="source-tag">Microsoft / VentureBeat · 2026.03.09</div>
+                    <div class="fact-grid">
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">What</h4>
+                            <p>微软在 M365 Copilot 中集成 Anthropic 的 Claude 技术，推出全新 Copilot Cowork，可在用户授权下跨 Word、Excel、Outlook、Teams 等应用自主完成工作任务，当前处于有限研究预览阶段。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">How</h4>
+                            <p>Copilot Cowork 基于 Anthropic Claude 模型构建，依托 Microsoft Graph API 获取企业数据权限，通过任务规划引擎将用户意图分解为跨应用行动步骤，每步均可审计回溯。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">Why</h4>
+                            <p>这是全球最大企业软件生态与顶级 AI 安全实验室的深度整合，标志着"AI Agent 进入微软 10 亿用户"的关键时刻到来，将直接冲击 Salesforce、ServiceNow 等传统 SaaS 工作流。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">影响与行动</h4>
+                            <p>传统办公自动化市场（RPA、低代码）面临颠覆性压力；关注 M365 Copilot API 开放节奏，可基于此构建企业 Agent 插件。</p>
+                        </div>
+                    </div>
+                    <button class="expand-btn" onclick="toggleCard(this, 'startup-copilot')">💡 创业灵感</button>
+                    <div class="startup-card" id="startup-copilot">
+                        <strong>💡 创业灵感</strong><br>
+                        <strong>做什么：</strong>开发"企业 Agent 任务审计与合规中间件"，为 Copilot Cowork / Claude 等 Agent 提供操作日志、权限管控、异常检测服务<br>
+                        <strong>切入点：</strong>从金融、医疗等强合规行业入手，提供符合 GDPR/等保的 Agent 操作审计 SaaS<br>
+                        <strong>为什么现在：</strong>Copilot Cowork 研究预览证明需求真实存在，但微软不会自己做深合规层，这是独立创业公司的窗口
+                    </div>
+                </div>
+                
+                <!-- 腾讯鹅虾 -->
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="score-badge">9.2</div>
+                        <div class="news-title"><a href="#" target="_blank">腾讯紧急上线"鹅虾"AI Agent 产品，支持接入 QQ、飞书、钉钉等主流协作平台</a></div>
+                    </div>
+                    <div class="source-tag">量子位 · 2026.03.10</div>
+                    <div class="fact-grid">
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">What</h4>
+                            <p>腾讯上线"鹅虾"AI Agent 产品，支持接入 QQ、飞书、钉钉等主流协作平台，让用户无需技术背景即可在现有工作流中部署和管理 AI 智能体完成自动化任务。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">How</h4>
+                            <p>鹅虾通过 API 接入方式与主流 IM/协作平台打通，提供可视化的 Agent 配置界面，用户只需描述任务需求即可生成 Agent 工作流。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">Why</h4>
+                            <p>腾讯此举是对"龙虾生态"爆发的快速跟进，将 AI Agent 接入其 10 亿 + 用户的通讯生态，意在占据国内企业 Agent 部署的流量入口和标准制定权。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">影响与行动</h4>
+                            <p>国内 AI Agent 平台竞争格局将快速形成；对独立 AI Agent SaaS 创业者：尽快接入主流平台生态。</p>
+                        </div>
+                    </div>
+                    <button class="expand-btn" onclick="toggleCard(this, 'startup-鹅虾')">💡 创业灵感</button>
+                    <div class="startup-card" id="startup-鹅虾">
+                        <strong>💡 创业灵感</strong><br>
+                        <strong>做什么：</strong>开发"企业定制 Agent 市场"，为鹅虾/钉钉/飞书生态提供行业垂直 Agent 模板（财务 Agent、HR Agent、销售 Agent）<br>
+                        <strong>切入点：</strong>率先在飞书开放平台发布高质量行业 Agent，建立品牌后向企业提供定制开发服务<br>
+                        <strong>为什么现在：</strong>平台刚上线，早期入驻者有天然流量红利和生态位优势
+                    </div>
+                </div>
+                
+                <!-- Gemini in Sheets -->
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="score-badge">8.8</div>
+                        <div class="news-title"><a href="#" target="_blank">Google 宣布 Gemini in Sheets 进入测试版，AI 可自动创建和编辑表格</a></div>
+                    </div>
+                    <div class="source-tag">Google Blog · 2026.03.10</div>
+                    <div class="fact-grid">
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">What</h4>
+                            <p>Google 宣布 Gemini in Sheets 进入测试版，新功能支持 AI 根据用户描述自动创建、整理和编辑整张表格，从基础任务到复杂数据分析均可通过自然语言驱动。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">How</h4>
+                            <p>Google 将 Gemini 3 系列模型深度集成进 Sheets，AI 可理解表格上下文、执行多步数据变换、生成图表和公式，整个操作通过自然语言对话完成。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">Why</h4>
+                            <p>全球有超过 10 亿 Google Workspace 用户，Gemini in Sheets 是将 AI 能力推送至最广泛用户的关键载体。"自然语言操作表格"是数据分析民主化的里程碑。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">影响与行动</h4>
+                            <p>面向非技术用户的数据分析工具压力增大；数据分析培训市场将转向"Prompting for Data"而非"Excel 公式教学"。</p>
+                        </div>
+                    </div>
+                    <button class="expand-btn" onclick="toggleCard(this, 'startup-sheets')">💡 创业灵感</button>
+                    <div class="startup-card" id="startup-sheets">
+                        <strong>💡 创业灵感</strong><br>
+                        <strong>做什么：</strong>开发"企业私有数据+AI 表格分析"产品，让企业的 ERP/CRM 数据可以像对话一样被分析，解决 Google Sheets 不能处理私有敏感数据的痛点<br>
+                        <strong>切入点：</strong>中小企业财务数据分析场景，提供本地化部署版本确保数据安全<br>
+                        <strong>为什么现在：</strong>Google 的产品教育市场，但企业敏感数据不会上传 Google，本地化版本天然存在需求
+                    </div>
+                </div>
+                
+                <!-- Granite 4.0 Speech -->
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="score-badge">8.5</div>
+                        <div class="news-title"><a href="#" target="_blank">IBM 发布 Granite 4.0 1B Speech 模型，仅 10 亿参数实现高质量语音识别</a></div>
+                    </div>
+                    <div class="source-tag">HuggingFace Blog / IBM · 2026.03.09</div>
+                    <div class="fact-grid">
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">What</h4>
+                            <p>IBM 发布 Granite 4.0 1B Speech 模型，仅 10 亿参数即可实现高质量多语言语音识别与合成，专为嵌入式设备、边缘计算节点和离线企业应用设计，完全开源可商用。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">How</h4>
+                            <p>采用紧凑 Transformer 架构，通过大规模多语言语料训练和量化压缩技术，在 1B 参数规模实现了可与 5B+ 参数模型媲美的语音理解能力，支持离线推理。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">Why</h4>
+                            <p>企业部署语音 AI 面临数据隐私、网络延迟和基础设施成本三大障碍。Granite 4.0 Speech 的边缘化方案是 IBM 在企业 AI 市场差异化竞争的重要棋子。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--cyan);">影响与行动</h4>
+                            <p>工业 IoT、医疗设备、智能硬件等对隐私有高要求的场景有了新的语音 AI 选项；开发者可基于此构建离线语音应用。</p>
+                        </div>
+                    </div>
+                    <button class="expand-btn" onclick="toggleCard(this, 'startup-granite')">💡 创业灵感</button>
+                    <div class="startup-card" id="startup-granite">
+                        <strong>💡 创业灵感</strong><br>
+                        <strong>做什么：</strong>基于 Granite 4.0 Speech 构建"工厂/医院离线语音助手"，解决强安全要求场景下不能联网调用云端 API 的痛点<br>
+                        <strong>切入点：</strong>智能制造领域的生产线质检语音报告系统，或医院的护理记录语音输入系统<br>
+                        <strong>为什么现在：</strong>Granite 开源商用，边缘端算力成本持续下降，企业对数据安全的重视程度创历史新高
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 6. 教育资讯（默认折叠） -->
+        <div class="section s-edu collapsed" id="sec-edu">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span class="section-icon">🎓</span>
+                <div>
+                    <div class="section-label" style="color: var(--sky);">EDUCATION</div>
+                    <div class="section-title">教育资讯</div>
+                </div>
+                <span class="section-count">
+                    <span>2 篇</span>
+                    <span class="section-toggle">▾</span>
+                </span>
+            </div>
+            <div class="section-body">
+                <!-- 大学校长 Trump 2.0 -->
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="score-badge">8.0</div>
+                        <div class="news-title"><a href="#" target="_blank">大学校长 Trump 2.0 调查：AI 在高等教育中的角色</a></div>
+                    </div>
+                    <div class="source-tag">Inside Higher Ed · 2026.03.10</div>
+                    <div class="fact-grid">
+                        <div class="fact-col">
+                            <h4 style="color: var(--sky);">What</h4>
+                            <p>美国多所大学校长联合发布报告，探讨 AI 在高等教育中的合理角色，建议建立"AI 使用伦理框架"。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--sky);">How</h4>
+                            <p>报告提出 AI 应作为"学习辅助工具"而非"替代教师"，建议学校制定明确的 AI 使用政策，平衡创新与学术诚信。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--sky);">Why</h4>
+                            <p>ChatGPT 等工具普及后，学术诚信问题频发，高校需要在拥抱技术和维护教育质量之间找到平衡点。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--sky);">影响与行动</h4>
+                            <p>教育 AI 产品需强化"辅助学习"定位，提供教师监控和学生使用报告功能；关注学术诚信检测工具的市场需求。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Agent 管理师培训 -->
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="score-badge">8.2</div>
+                        <div class="news-title"><a href="#" target="_blank">Jeff Dean 预言催生新职业："Agent 管理师"培训课程兴起</a></div>
+                    </div>
+                    <div class="source-tag">EdSurge · 2026.03.10</div>
+                    <div class="fact-grid">
+                        <div class="fact-col">
+                            <h4 style="color: var(--sky);">What</h4>
+                            <p>随着 Google 首席科学家 Jeff Dean 预言"每个开发者将管理 50 个 AI 智能体"，多家教育机构推出"Agent 管理师"培训课程。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--sky);">How</h4>
+                            <p>课程涵盖 Agent 编排、任务调度、成本监控、质量评估等内容，面向技术人员和非技术产品经理。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--sky);">Why</h4>
+                            <p>企业急需能够管理多 Agent 系统的人才，传统软件开发技能已不足以应对 AI 驱动的工作流。</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4 style="color: var(--sky);">影响与行动</h4>
+                            <p>教育培训机构可开发 Agent 管理相关课程；个人开发者应开始系统性学习 Agent 编排与需求工程技能。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Stats Footer -->
+        <div class="stats-footer">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">精选篇数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">信源数量</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">核心板块</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">股票标的</div>
+                </div>
+            </div>
+            <div class="footer-credit">Generated by 洋同学 AI 实验室 · AI Daily Intelligence</div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleSection(header) {
+            const section = header.parentElement;
+            const body = section.querySelector('.section-body');
+            const toggle = header.querySelector('.section-toggle');
+            
+            if (section.classList.contains('collapsed')) {
+                section.classList.remove('collapsed');
+                section.classList.add('open');
+                toggle.textContent = '▾';
+            } else {
+                section.classList.add('collapsed');
+                section.classList.remove('open');
+                toggle.textContent = '▸';
+            }
+        }
+        
+        function toggleCard(btn, cardId) {
+            const card = document.getElementById(cardId);
+            if (card.classList.contains('show')) {
+                card.classList.remove('show');
+                btn.style.color = '';
+            } else {
+                card.classList.add('show');
+                btn.style.color = '#fff';
+            }
+        }
+    </script>
+</body>
+</html>
