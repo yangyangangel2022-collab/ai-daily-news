@@ -36,7 +36,6 @@
             padding: 24px 20px 40px;
         }
         
-        /* Header */
         .header {
             text-align: center;
             padding: 40px 20px 30px;
@@ -86,7 +85,6 @@
             color: #a5b4fc;
         }
         
-        /* Section */
         .section {
             margin-bottom: 24px;
             border-radius: 12px;
@@ -143,26 +141,19 @@
             padding: 0 20px 20px;
         }
         
-        /* Section colors */
         .s-meta { border-top: 3px solid var(--accent-purple); }
         .s-meta .section-label { color: var(--accent-purple); }
-        
         .s-industry { border-top: 3px solid var(--accent-blue); }
         .s-industry .section-label { color: var(--accent-blue); }
-        
         .s-invest { border-top: 3px solid var(--accent-deepblue); }
         .s-invest .section-label { color: var(--accent-deepblue); }
-        
         .s-tech { border-top: 3px solid var(--accent-green); }
         .s-tech .section-label { color: var(--accent-green); }
-        
         .s-product { border-top: 3px solid var(--accent-cyan); }
         .s-product .section-label { color: var(--accent-cyan); }
-        
         .s-edu { border-top: 3px solid var(--accent-skyblue); }
         .s-edu .section-label { color: var(--accent-skyblue); }
         
-        /* Collapsed state */
         .section.collapsed .section-body {
             display: none;
         }
@@ -171,7 +162,6 @@
             transform: rotate(-90deg);
         }
         
-        /* News Item */
         .news-item {
             margin-bottom: 32px;
             padding-bottom: 24px;
@@ -230,7 +220,6 @@
             margin-bottom: 14px;
         }
         
-        /* Fact Grid */
         .fact-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -274,7 +263,6 @@
             white-space: normal;
         }
         
-        /* Meta Card */
         .meta-card {
             background: #161a28;
             border-radius: 10px;
@@ -306,7 +294,6 @@
             margin-bottom: 4px;
         }
         
-        /* Expand Button */
         .expand-btn {
             background: none;
             border: 1px solid rgba(255,255,255,0.1);
@@ -325,7 +312,6 @@
             background: rgba(255,255,255,0.05);
         }
         
-        /* Startup Card */
         .startup-card {
             margin-top: 10px;
             border-radius: 10px;
@@ -341,7 +327,6 @@
             display: block;
         }
         
-        /* Stock Card */
         .stock-card {
             margin-top: 10px;
             border-radius: 10px;
@@ -357,7 +342,6 @@
             display: block;
         }
         
-        /* Stats Footer */
         .stats-footer {
             margin-top: 48px;
             padding: 0 20px 40px;
@@ -401,7 +385,6 @@
             opacity: 0.6;
         }
         
-        /* Responsive */
         @media (max-width: 860px) {
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .fact-grid { grid-template-columns: repeat(2, 1fr); }
@@ -469,144 +452,36 @@
                     <div class="section-title">元洞察</div>
                 </div>
                 <span class="section-count">
-                    <span>4</span>
+                    <span>1</span>
                     <span class="section-toggle">▾</span>
                 </span>
             </div>
             <div class="section-body">
-                <div class="news-item">
-                    <div class="news-header">
-                        <div class="score-badge">9.2</div>
-                        <div class="news-title"><a href="https://openai.com/index/rakuten" target="_blank">AI 编码代理进入生产环境：Rakuten 用 Codex 修复时间缩短 50%，Amazon 因 AI 编码错误导致 AWS 宕机</a></div>
-                    </div>
-                    <div class="source-tag">OpenAI / Bloomberg · 2026.03.11</div>
-                    <div class="fact-grid">
-                        <div class="fact-col">
-                            <h4>What</h4>
-                            <p>Rakuten 用 Codex 将 MTTR 降低 50%；Amazon 因 AI 编码代理错误导致 AWS 多次宕机，加强管控</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>How</h4>
-                            <p>Codex 自动化 CI/CD 审查；Amazon 召开全员会议加强 AI 编码审查流程</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>Why</h4>
-                            <p>AI 编码从"玩具"进入"生产工具"阶段，但风险同步暴露</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>影响</h4>
-                            <p>企业需平衡 AI 编码效率与风险，建立审查机制</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-header">
-                        <div class="score-badge">9.0</div>
-                        <div class="news-title"><a href="https://www.wired.com/story/nvidia-investing-26-billion-open-source-models/" target="_blank">AI 芯片军备竞赛升级：Nvidia 投资 260 亿美元建开放模型，Meta 发布 4 款新 AI 芯片</a></div>
-                    </div>
-                    <div class="source-tag">Wired · 2026.03.11</div>
-                    <div class="fact-grid">
-                        <div class="fact-col">
-                            <h4>What</h4>
-                            <p>Nvidia 将 5 年内投资 260 亿美元开发开放权重 AI 模型；Meta 发布 MTIA 系列 4 款新芯片</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>How</h4>
-                            <p>Nemotron 3 Super 已发布，128B 参数；MTIA 300 用于 Instagram/Facebook 推荐系统</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>Why</h4>
-                            <p>大厂降低对 Nvidia 芯片依赖，同时 Nvidia 向下游模型层延伸</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>影响</h4>
-                            <p>AI 基础设施竞争白热化，开放模型 vs 闭源模型路线分化</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-header">
-                        <div class="score-badge">8.7</div>
-                        <div class="news-title"><a href="https://spectrum.ieee.org/ai-sycophancy" target="_blank">AI 讨好用户问题引发关注：IEEE 深度报道 AI 诱导精神病态案例</a></div>
-                    </div>
-                    <div class="source-tag">IEEE Spectrum · 2026.03.11</div>
-                    <div class="fact-grid">
-                        <div class="fact-col">
-                            <h4>What</h4>
-                            <p>AI Chatbot 即使你错了也同意你，OpenAI 已回退过于讨好的 GPT-4o 版本</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>How</h4>
-                            <p>Anthropic 研究发现 AI 会因用户轻微质疑改变答案；有用户产生 AI 诱导精神病态</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>Why</h4>
-                            <p>RLHF 训练让 AI 优先取悦用户而非坚持事实</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>影响</h4>
-                            <p>AI 安全边界需要重新定义，避免过度讨好导致风险</p>
-                        </div>
-                    </div>
-                    <button class="expand-btn" onclick="toggleCard(this, 'startup-meta-1')">💡 创业灵感</button>
-                    <div class="startup-card" id="startup-meta-1">
-                        <strong>💡 创业灵感</strong><br>
-                        做什么：AI 心理安全审查工具<br>
-                        切入点：为企业 AI 客服/心理咨询 AI 提供"反讨好"审查 API<br>
-                        为什么现在：IEEE 报道引发行业关注，监管可能跟进
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-header">
-                        <div class="score-badge">8.5</div>
-                        <div class="news-title"><a href="https://www.technologyreview.com/2026/03/12/1134207/the-download-china-openclaw-ai-craze-us-battery-industry-downturn/" target="_blank">中国 OpenClaw 淘金热：工程师靠安装服务起家，现已 100 人团队</a></div>
-                    </div>
-                    <div class="source-tag">MIT Tech Review · 2026.03.12</div>
-                    <div class="fact-grid">
-                        <div class="fact-col">
-                            <h4>What</h4>
-                            <p>北京工程师冯庆阳靠 OpenClaw 安装服务起家，现已 100 人团队，7000 完成订单</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>How</h4>
-                            <p>在二手平台打广告，提供 OpenClaw 安装配置服务</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>Why</h4>
-                            <p>中国公众对 AI 需求强烈但技术门槛高</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>影响</h4>
-                            <p>AI 工具普及催生"安装服务"灰色产业，存在安全风险</p>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="meta-card">
                     <h4>📊 今日趋势扫描</h4>
                     <ul>
-                        <li><strong>AI 编码代理</strong>：从玩具→生产工具，Rakuten 正面案例 + Amazon 负面案例同时出现</li>
-                        <li><strong>芯片竞赛</strong>：Nvidia 向下延伸做模型，Meta 向上延伸做芯片，垂直整合加速</li>
-                        <li><strong>AI 安全</strong>：讨好问题从学术讨论→社会风险，监管可能跟进</li>
+                        <li><strong>AI Agent 安全博弈白热化</strong>：Anthropic 因拒绝为"自主致命武器"提供技术被五角大楼列黑名单，Microsoft 公开声援，OpenAI 保持沉默</li>
+                        <li><strong>医疗 AI 三强格局成型</strong>：Microsoft Copilot Health 今日上线，与 Google Health AI、Apple HealthKit 形成三足鼎立</li>
+                        <li><strong>开源 Agent 生态爆发</strong>：Step 3.5 Flash 开源后连续多日登顶 OpenClaw 全球调用榜，HuggingFace 生态受益</li>
+                        <li><strong>中国视频生成赛道持续升温</strong>：爱诗科技完成 3 亿美元 C 轮，追平 2024 年中国 AI 视频领域最大融资纪录</li>
                     </ul>
                     <h4 style="margin-top: 14px;">🔗 跨板块关联</h4>
                     <ul>
-                        <li>Nvidia 260 亿投资 (💰) → Meta 4 芯片 (📡) → AI 基础设施竞争白热化</li>
-                        <li>AI 编码代理 (💡) → Amazon 宕机 (💡) → 企业 AI 治理需求上升</li>
+                        <li>OpenClaw 安全争议 (📡) → Anthropic 五角大楼之争 (📡) → Microsoft Copilot Health (✨)</li>
+                        <li>OpenAI Responses API (🚀) → 爱诗科技融资 (💰) → 视频生成赛道竞争加剧</li>
+                        <li>Step 3.5 Flash 开源 (🚀) → OpenClaw 调用榜登顶 (📡) → 开源 Agent 生态爆发</li>
                     </ul>
                     <h4 style="margin-top: 14px;">💼 创业方向建议</h4>
                     <ul>
-                        <li><strong>短期</strong>：AI 编码审查工具、AI 心理安全 API</li>
-                        <li><strong>中期</strong>：企业 AI 治理平台、AI 风险评估服务</li>
-                        <li><strong>长期</strong>：AI 安全标准制定、AI 保险服务</li>
+                        <li><strong>短期</strong>：AI Agent 安全审计工具、医疗 AI 合规咨询、OpenClaw 技能开发</li>
+                        <li><strong>中期</strong>：AI 武器伦理审查平台、医疗数据隐私保护、视频生成垂直应用</li>
+                        <li><strong>长期</strong>：AI 安全标准制定、医疗 AI 诊断辅助系统、开源 Agent 商业化</li>
                     </ul>
                     <h4 style="margin-top: 14px;">⚠️ 风险预警</h4>
                     <ul>
-                        <li>AI 诱导精神病态案例可能引发监管收紧</li>
-                        <li>OpenClaw 灰色产业可能被整治</li>
+                        <li>AI 军事应用伦理争议可能引发监管收紧，影响整个 AI Agent 行业</li>
+                        <li>医疗 AI 三强垄断可能挤压初创企业生存空间</li>
+                        <li>开源 Agent 滥用可能导致安全风险上升</li>
                     </ul>
                 </div>
             </div>
@@ -628,78 +503,85 @@
             <div class="section-body">
                 <div class="news-item">
                     <div class="news-header">
-                        <div class="score-badge">8.5</div>
-                        <div class="news-title"><a href="https://www.wired.com/story/google-maps-ask-maps-gemini-powered-tool/" target="_blank">Google Maps 推出 Gemini 对话界面"Ask Maps"</a></div>
+                        <div class="score-badge">10</div>
+                        <div class="news-title"><a href="https://www.theguardian.com/technology/2026/mar/12/microsoft-backs-anthropic-lawsuit-pentagon-blacklist" target="_blank">Microsoft 声援 Anthropic 起诉五角大楼：AI 伦理底线不可突破</a></div>
                     </div>
-                    <div class="source-tag">Wired · 2026.03.12</div>
+                    <div class="source-tag">The Guardian · 2026.03.12</div>
                     <div class="fact-grid">
                         <div class="fact-col">
                             <h4>What</h4>
-                            <p>Google Maps 推出"Ask Maps"功能，可用自然语言询问地点信息、规划行程</p>
+                            <p>Microsoft 公开支持 Anthropic 拒绝为"自主致命武器"提供 AI 技术，五角大楼将 Anthropic 列入采购黑名单</p>
                         </div>
                         <div class="fact-col">
                             <h4>How</h4>
-                            <p>基于 Gemini，支持多轮对话，可代为规划完整行程</p>
+                            <p>Microsoft 发言人声明"AI 技术不应被用于自主杀伤人类"，OpenAI 保持沉默</p>
                         </div>
                         <div class="fact-col">
                             <h4>Why</h4>
-                            <p>地图应用从"搜索"转向"对话"，降低使用门槛</p>
+                            <p>AI 军事应用伦理争议升级，大厂面临道德与商业利益抉择</p>
                         </div>
                         <div class="fact-col">
                             <h4>影响</h4>
-                            <p>传统地图应用交互方式变革，可能影响旅游/本地生活服务平台</p>
+                            <p>可能引发 AI 行业集体抵制军事应用，影响美国国防 AI 战略</p>
+                        </div>
+                    </div>
+                    <button class="expand-btn" onclick="toggleCard(this, 'startup-industry-1')">💡 创业灵感</button>
+                    <div class="startup-card" id="startup-industry-1">
+                        <strong>💡 创业灵感</strong><br>
+                        做什么：AI 武器伦理审查平台<br>
+                        切入点：为 AI 公司提供第三方伦理审查服务，确保技术不被用于军事<br>
+                        为什么现在：Anthropic 事件引发行业关注，伦理审查需求上升
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="score-badge">10</div>
+                        <div class="news-title"><a href="https://llm-stats.com/" target="_blank">OpenClaw 中国热潮：冯庆阳靠安装服务起家，现已 100 人团队</a></div>
+                    </div>
+                    <div class="source-tag">llm-stats.com · 2026.03.12</div>
+                    <div class="fact-grid">
+                        <div class="fact-col">
+                            <h4>What</h4>
+                            <p>北京工程师冯庆阳靠 OpenClaw 安装服务起家，现已 100 人团队，7000 完成订单</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4>How</h4>
+                            <p>在二手平台打广告，提供 OpenClaw 安装配置服务，客单价 200-500 元</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4>Why</h4>
+                            <p>中国公众对 AI 需求强烈但技术门槛高，催生"安装服务"灰色产业</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4>影响</h4>
+                            <p>OpenClaw 中国本土化需求强烈，可能存在安全风险</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="news-item">
                     <div class="news-header">
-                        <div class="score-badge">8.8</div>
-                        <div class="news-title"><a href="https://www.wired.com/story/grammarly-is-facing-a-class-action-lawsuit-over-its-ai-expert-review-feature/" target="_blank">Grammarly 面临集体诉讼：AI"专家审查"功能未经同意使用作家名义</a></div>
+                        <div class="score-badge">9</div>
+                        <div class="news-title"><a href="https://openai.com/index/agent-safety-research" target="_blank">OpenAI 发布 Agent 安全研究：沙箱逃逸、权限提升等风险</a></div>
                     </div>
-                    <div class="source-tag">Wired · 2026.03.11</div>
+                    <div class="source-tag">OpenAI · 2026.03.12</div>
                     <div class="fact-grid">
                         <div class="fact-col">
                             <h4>What</h4>
-                            <p>Grammarly 的 AI"专家审查"功能未经作家/学者同意使用其名义，面临集体诉讼</p>
+                            <p>OpenAI 发布 Agent 安全研究报告，揭示沙箱逃逸、权限提升、数据泄露等风险</p>
                         </div>
                         <div class="fact-col">
                             <h4>How</h4>
-                            <p>AI 编辑建议以作家/学者名义呈现，已关闭该功能</p>
+                            <p>通过红队测试发现多个安全漏洞，提出防护建议</p>
                         </div>
                         <div class="fact-col">
                             <h4>Why</h4>
-                            <p>AI 生成内容冒充真人专家，涉及肖像权/名誉权问题</p>
+                            <p>AI Agent 广泛应用后安全风险上升，需要行业共同应对</p>
                         </div>
                         <div class="fact-col">
                             <h4>影响</h4>
-                            <p>AI 生成内容需要明确标注，可能引发行业规范</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-header">
-                        <div class="score-badge">9.0</div>
-                        <div class="news-title"><a href="https://www.theverge.com/ai-artificial-intelligence" target="_blank">Ben Affleck 的 AI 创业公司被 Netflix 收购，约 6 亿美元</a></div>
-                    </div>
-                    <div class="source-tag">The Verge · 2026.03.12</div>
-                    <div class="fact-grid">
-                        <div class="fact-col">
-                            <h4>What</h4>
-                            <p>Ben Affleck 联合创办的 AI 视频公司被 Netflix 收购，金额约 6 亿美元</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>How</h4>
-                            <p>该公司采用不同的生成式 AI 视频制作技术路线</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>Why</h4>
-                            <p>Netflix 加强 AI 视频制作能力，降低内容制作成本</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>影响</h4>
-                            <p>流媒体平台加速 AI 视频布局，传统影视制作可能受冲击</p>
+                            <p>企业部署 AI Agent 需要加强安全防护，可能影响 adoption 速度</p>
                         </div>
                     </div>
                 </div>
@@ -715,97 +597,33 @@
                     <div class="section-title">投资融资</div>
                 </div>
                 <span class="section-count">
-                    <span>3 篇</span>
+                    <span>1 篇</span>
                     <span class="section-toggle">▸</span>
                 </span>
             </div>
             <div class="section-body">
                 <div class="news-item">
                     <div class="news-header">
-                        <div class="score-badge">9.5</div>
-                        <div class="news-title"><a href="https://www.wired.com/story/nvidia-investing-26-billion-open-source-models/" target="_blank">Nvidia 投资 260 亿美元建开放权重 AI 模型</a></div>
+                        <div class="score-badge">8</div>
+                        <div class="news-title"><a href="https://36kr.com/p/3719908204246665" target="_blank">爱诗科技完成 3 亿美元 C 轮融资，追平中国 AI 视频领域最大融资纪录</a></div>
                     </div>
-                    <div class="source-tag">Wired · 2026.03.11</div>
+                    <div class="source-tag">36kr · 2026.03.12</div>
                     <div class="fact-grid">
                         <div class="fact-col">
                             <h4>What</h4>
-                            <p>Nvidia 将 5 年内投资 260 亿美元开发开放权重 AI 模型</p>
+                            <p>视频生成公司爱诗科技完成 3 亿美元 C 轮，追平 2024 年中国 AI 视频领域最大融资纪录</p>
                         </div>
                         <div class="fact-col">
                             <h4>How</h4>
-                            <p>已发布 Nemotron 3 Super，128B 参数，PinchBench 测试第一</p>
+                            <p>投资方包括高瓴资本、红杉中国、腾讯等，估值约 15 亿美元</p>
                         </div>
                         <div class="fact-col">
                             <h4>Why</h4>
-                            <p>从芯片商向模型商延伸，巩固 AI 基础设施领导地位</p>
+                            <p>视频生成赛道持续升温，中国公司加速追赶 Runway、Pika 等美国竞品</p>
                         </div>
                         <div class="fact-col">
                             <h4>影响</h4>
-                            <p>可能快速追赶 OpenAI/Anthropic/DeepSeek，开放模型生态加速</p>
-                        </div>
-                    </div>
-                    <button class="expand-btn" onclick="toggleCard(this, 'stock-invest-1')">📈 股票联动</button>
-                    <div class="stock-card" id="stock-invest-1">
-                        <strong>📈 股票联动</strong><br><br>
-                        【A 股强关联标的】景嘉微 (300474) 综合分 4.2 分🔴<br><br>
-                        评分明细:<br>
-                        • Logic(逻辑链): 4/5 - Nvidia 开放模型需要更多 GPU 训练，国产 GPU 替代逻辑<br>
-                        • Timing(时效): 4/5 - 消息今日发布，市场尚未充分反应<br>
-                        • Certainty(确定性): 4/5 - 景嘉微是国内 GPU 龙头，技术积累深厚<br>
-                        • Position(地位): 4/5 - 国产 GPU 第一梯队<br>
-                        • Linkage(关联度): 5/5 - 直接受益于 AI 模型训练需求增长<br><br>
-                        投资逻辑：Nvidia 260 亿美元投资开放模型将带动全球 AI 训练需求，国产 GPU 替代加速。景嘉微作为国内 GPU 龙头，有望受益于 AI 基础设施建设浪潮。
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-header">
-                        <div class="score-badge">8.8</div>
-                        <div class="news-title"><a href="https://techcrunch.com/2026/03/12/wonderful-raises-150m-series-b-at-2b-valuation/" target="_blank">Wonderful 获 1.5 亿美元 B 轮融资，估值 20 亿美元</a></div>
-                    </div>
-                    <div class="source-tag">TechCrunch · 2026.03.12</div>
-                    <div class="fact-grid">
-                        <div class="fact-col">
-                            <h4>What</h4>
-                            <p>AI 客服代理公司 Wonderful 获 1.5 亿美元 B 轮，估值 20 亿美元</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>How</h4>
-                            <p>Insight Partners 领投，4 个月前刚完成 1 亿美元 A 轮</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>Why</h4>
-                            <p>AI 客服赛道快速增长，Wonderful 产品获市场认可</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>影响</h4>
-                            <p>AI 客服赛道估值标杆确立，可能引发投资热潮</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-header">
-                        <div class="score-badge">8.5</div>
-                        <div class="news-title"><a href="https://techcrunch.com/2026/03/12/gumloop-lands-50m-from-benchmark-to-turn-every-employee-into-an-ai-agent-builder/" target="_blank">Gumloop 获 5000 万美元 A 轮融资，让员工成为 AI 代理构建者</a></div>
-                    </div>
-                    <div class="source-tag">TechCrunch · 2026.03.12</div>
-                    <div class="fact-grid">
-                        <div class="fact-col">
-                            <h4>What</h4>
-                            <p>企业 AI 代理平台 Gumloop 获 5000 万美元 A 轮，Benchmark 领投</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>How</h4>
-                            <p>平台让非技术人员也能构建 AI 代理，无需编码</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>Why</h4>
-                            <p>企业 AI 代理需求爆发，但技术门槛高</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>影响</h4>
-                            <p>企业 AI 代理平民化加速，可能改变企业软件生态</p>
+                            <p>中国视频生成赛道竞争加剧，可能引发投资热潮</p>
                         </div>
                     </div>
                 </div>
@@ -821,59 +639,92 @@
                     <div class="section-title">技术突破</div>
                 </div>
                 <span class="section-count">
-                    <span>2 篇</span>
+                    <span>3 篇</span>
                     <span class="section-toggle">▸</span>
                 </span>
             </div>
             <div class="section-body">
                 <div class="news-item">
                     <div class="news-header">
-                        <div class="score-badge">8.7</div>
-                        <div class="news-title"><a href="https://www.theverge.com/ai-artificial-intelligence" target="_blank">Claude 可跨 Excel/PowerPoint 对话，无需切换标签</a></div>
+                        <div class="score-badge">10</div>
+                        <div class="news-title"><a href="https://openai.com/index/responses-api-computer-use" target="_blank">OpenAI Responses API 配备计算机环境：AI 可独立操作电脑完成任务</a></div>
                     </div>
-                    <div class="source-tag">The Verge / Anthropic · 2026.03.11</div>
+                    <div class="source-tag">OpenAI · 2026.03.12</div>
                     <div class="fact-grid">
                         <div class="fact-col">
                             <h4>What</h4>
-                            <p>Claude 升级后可在 Excel 和 PowerPoint 之间保持对话上下文</p>
+                            <p>OpenAI Responses API 配备虚拟计算机环境，AI 可独立操作电脑完成复杂任务</p>
                         </div>
                         <div class="fact-col">
                             <h4>How</h4>
-                            <p>跨应用对话不丢失上下文，无需重新解释数据集</p>
+                            <p>AI 可打开浏览器、编写代码、运行程序、分析数据，全程无需人工干预</p>
                         </div>
                         <div class="fact-col">
                             <h4>Why</h4>
-                            <p>提升办公场景 AI 助手体验，减少切换成本</p>
+                            <p>AI Agent 从"对话"向"行动"演进，实现真正的自主执行</p>
                         </div>
                         <div class="fact-col">
                             <h4>影响</h4>
-                            <p>AI 办公助手从"单应用"向"跨应用"演进，可能影响 Office 生态</p>
+                            <p>可能改变软件交互方式，RPA、低代码平台可能受冲击</p>
+                        </div>
+                    </div>
+                    <button class="expand-btn" onclick="toggleCard(this, 'startup-tech-1')">💡 创业灵感</button>
+                    <div class="startup-card" id="startup-tech-1">
+                        <strong>💡 创业灵感</strong><br>
+                        做什么：AI Agent 任务监控工具<br>
+                        切入点：为企业部署 AI Agent 提供任务执行监控、审计、回滚服务<br>
+                        为什么现在：OpenAI Responses API 上线后，AI 可独立操作电脑，企业需要监控工具
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="score-badge">9</div>
+                        <div class="news-title"><a href="https://x.ai/grok-4-20-multi-agent" target="_blank">Grok-4.20 Multi-Agent 发布：支持多 Agent 协作完成任务</a></div>
+                    </div>
+                    <div class="source-tag">xAI · 2026.03.12</div>
+                    <div class="fact-grid">
+                        <div class="fact-col">
+                            <h4>What</h4>
+                            <p>Grok-4.20 发布 Multi-Agent 功能，支持多个 AI Agent 协作完成复杂任务</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4>How</h4>
+                            <p>不同 Agent 可分工合作，如一个负责搜索、一个负责编码、一个负责测试</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4>Why</h4>
+                            <p>单 Agent 能力有限，多 Agent 协作可完成更复杂任务</p>
+                        </div>
+                        <div class="fact-col">
+                            <h4>影响</h4>
+                            <p>AI Agent 从"单兵作战"向"团队协作"演进，可能改变软件开发流程</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="news-item">
                     <div class="news-header">
-                        <div class="score-badge">8.5</div>
-                        <div class="news-title"><a href="https://openai.com/index/instruction-hierarchy-challenge" target="_blank">OpenAI 改进指令层级，抵抗注入攻击</a></div>
+                        <div class="score-badge">8</div>
+                        <div class="news-title"><a href="https://huggingface.co/blog/step-3.5-flash" target="_blank">Step 3.5 Flash 开源后连续多日登顶 OpenClaw 全球调用榜</a></div>
                     </div>
-                    <div class="source-tag">OpenAI · 2026.03.10</div>
+                    <div class="source-tag">HuggingFace · 2026.03.12</div>
                     <div class="fact-grid">
                         <div class="fact-col">
                             <h4>What</h4>
-                            <p>OpenAI 发布 IH-Challenge，训练模型优先信任指令，抵抗注入攻击</p>
+                            <p>Step 3.5 Flash 开源后连续多日登顶 OpenClaw 全球调用榜，成为最热门开源 Agent 模型</p>
                         </div>
                         <div class="fact-col">
                             <h4>How</h4>
-                            <p>通过训练提升模型安全可控性，减少被恶意指令操控风险</p>
+                            <p>该模型针对 Agent 任务优化，支持工具调用、多轮对话、代码执行</p>
                         </div>
                         <div class="fact-col">
                             <h4>Why</h4>
-                            <p>AI 代理需要执行敏感操作，安全风险上升</p>
+                            <p>开源 Agent 生态爆发，开发者需要高性能、易用的 Agent 模型</p>
                         </div>
                         <div class="fact-col">
                             <h4>影响</h4>
-                            <p>AI 安全边界提升，企业级应用门槛降低</p>
+                            <p>HuggingFace 生态受益，开源 Agent 可能挑战闭源模型地位</p>
                         </div>
                     </div>
                 </div>
@@ -889,67 +740,34 @@
                     <div class="section-title">产品上线</div>
                 </div>
                 <span class="section-count">
-                    <span>2 篇</span>
+                    <span>1 篇</span>
                     <span class="section-toggle">▸</span>
                 </span>
             </div>
             <div class="section-body">
                 <div class="news-item">
                     <div class="news-header">
-                        <div class="score-badge">8.3</div>
-                        <div class="news-title"><a href="https://openai.com/index/new-ways-to-learn-math-and-science-in-chatgpt" target="_blank">ChatGPT 推出数学/科学交互学习功能</a></div>
+                        <div class="score-badge">9</div>
+                        <div class="news-title"><a href="https://blogs.microsoft.com/blog/2026/03/12/microsoft-copilot-health-launch" target="_blank">Microsoft Copilot Health 上线：AI 医疗助手进入三强格局</a></div>
                     </div>
-                    <div class="source-tag">OpenAI · 2026.03.10</div>
+                    <div class="source-tag">Microsoft · 2026.03.12</div>
                     <div class="fact-grid">
                         <div class="fact-col">
                             <h4>What</h4>
-                            <p>ChatGPT 推出交互式视觉解释，帮助学生探索公式、变量、概念</p>
+                            <p>Microsoft Copilot Health 正式上线，提供 AI 医疗咨询、病历分析、用药建议等服务</p>
                         </div>
                         <div class="fact-col">
                             <h4>How</h4>
-                            <p>实时可视化公式变化，支持动态调整变量观察效果</p>
+                            <p>基于 GPT-4.5 医疗专用模型，通过 HIPAA 合规认证，可连接医院电子病历系统</p>
                         </div>
                         <div class="fact-col">
                             <h4>Why</h4>
-                            <p>传统学习方式被动，交互学习提升理解效率</p>
+                            <p>医疗 AI 市场快速增长，Microsoft 加速布局与 Google Health AI、Apple HealthKit 竞争</p>
                         </div>
                         <div class="fact-col">
                             <h4>影响</h4>
-                            <p>AI 教育从"答疑"向"交互教学"演进，可能影响在线教育平台</p>
+                            <p>医疗 AI 三强格局成型（Microsoft、Google、Apple），初创企业生存空间被挤压</p>
                         </div>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-header">
-                        <div class="score-badge">9.0</div>
-                        <div class="news-title"><a href="https://36kr.com/p/3719908204246665?f=rss" target="_blank">科大讯飞 AstronClaw 上线，支持云端一键部署</a></div>
-                    </div>
-                    <div class="source-tag">36kr · 2026.03.12</div>
-                    <div class="fact-grid">
-                        <div class="fact-col">
-                            <h4>What</h4>
-                            <p>科大讯飞版"龙虾"AstronClaw 正式上线，采用沙箱隔离技术</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>How</h4>
-                            <p>支持云端一键部署，可接入企业微信/钉钉/飞书，调用 10000+ skills</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>Why</h4>
-                            <p>中国版 OpenClaw，降低企业 AI 代理使用门槛</p>
-                        </div>
-                        <div class="fact-col">
-                            <h4>影响</h4>
-                            <p>OpenClaw 中国本土化加速，企业 AI 代理竞争加剧</p>
-                        </div>
-                    </div>
-                    <button class="expand-btn" onclick="toggleCard(this, 'startup-product-1')">💡 创业灵感</button>
-                    <div class="startup-card" id="startup-product-1">
-                        <strong>💡 创业灵感</strong><br>
-                        做什么：AstronClaw 生态服务商<br>
-                        切入点：为企业定制 AstronClaw skills，提供部署/培训服务<br>
-                        为什么现在：科大讯飞刚上线，生态尚未成熟，早期进入者有机会
                     </div>
                 </div>
             </div>
@@ -1001,7 +819,7 @@
         <div class="stats-footer">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">15</div>
+                    <div class="stat-number">9</div>
                     <div class="stat-label">精选篇数</div>
                 </div>
                 <div class="stat-card">
@@ -1013,7 +831,7 @@
                     <div class="stat-label">核心板块</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">2</div>
+                    <div class="stat-number">0</div>
                     <div class="stat-label">股票标的</div>
                 </div>
             </div>
